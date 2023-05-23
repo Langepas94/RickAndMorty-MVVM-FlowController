@@ -20,6 +20,9 @@
 		4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */; };
 		4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */; };
 		4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC32A1B994500B0D16B /* FlowController.swift */; };
+		4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */; };
+		4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */; };
+		4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4410AECB2A1BEB2300B0D16B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,8 @@
 		4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroOnMainTableViewModelProtocol.swift; sourceTree = "<group>"; };
 		4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		4410AEC32A1B994500B0D16B /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
+		4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkManager.swift; sourceTree = "<group>"; };
+		4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHeroesDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +188,9 @@
 		4410AEBF2A1B96D000B0D16B /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				4410AEC72A1BD79F00B0D16B /* NetworkHeroesDataModel */,
 				4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */,
+				4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -193,6 +201,14 @@
 				4410AEC32A1B994500B0D16B /* FlowController.swift */,
 			);
 			path = FlowController;
+			sourceTree = "<group>";
+		};
+		4410AEC72A1BD79F00B0D16B /* NetworkHeroesDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */,
+			);
+			path = NetworkHeroesDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +227,9 @@
 			dependencies = (
 			);
 			name = "RickAndMorty MVVM";
+			packageProductDependencies = (
+				4410AECB2A1BEB2300B0D16B /* Kingfisher */,
+			);
 			productName = "RickAndMorty MVVM";
 			productReference = 4410AE7F2A1B841A00B0D16B /* RickAndMorty MVVM.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +302,9 @@
 				Base,
 			);
 			mainGroup = 4410AE762A1B841A00B0D16B;
+			packageReferences = (
+				4410AECA2A1BEB2300B0D16B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 4410AE802A1B841A00B0D16B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -325,11 +347,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */,
 				4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */,
 				4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */,
 				4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */,
 				4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */,
 				4410AEB82A1B88E700B0D16B /* HeroModelOnTable.swift in Sources */,
+				4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */,
 				4410AE872A1B841A00B0D16B /* MainTableWithHeroesViewController.swift in Sources */,
 				4410AEBB2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift in Sources */,
 				4410AE832A1B841A00B0D16B /* AppDelegate.swift in Sources */,
@@ -666,6 +690,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4410AECA2A1BEB2300B0D16B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4410AECB2A1BEB2300B0D16B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4410AECA2A1BEB2300B0D16B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4410AE772A1B841A00B0D16B /* Project object */;
 }

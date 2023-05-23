@@ -11,5 +11,5 @@ import UIKit
 protocol HeroModelOnTableProtocol {
     
     var name: String { get set}
-    
+    init(data: CharacterResult)
 }

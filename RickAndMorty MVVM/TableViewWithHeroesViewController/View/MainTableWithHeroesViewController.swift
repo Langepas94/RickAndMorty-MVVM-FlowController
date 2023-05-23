@@ -9,59 +9,70 @@ import UIKit
 
 class MainTableWithHeroesViewController: UIViewController  {
     
-    var viewModel: HeroOnMainTableViewModelProtocol? {
-        didSet {
-            bindViewModel()
-        }
-    }
+    var viewModel: HeroOnMainTableViewModelProtocol? = HeroOnMainTableViewModel()
     
     var table: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "proba")
+        table.frame = UIScreen.main.bounds
         return table
     }()
-    
-    
-    var mock = [HeroModelOnTable(name: "Bar"), HeroModelOnTable(name: "Baz"), HeroModelOnTable(name: "Foo")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        self.viewModel = HeroOnMainTableViewModel(model: mock)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.viewModel?.model.append(HeroModelOnTable(name: "Bar2"))
-        }
+        bindViewModel()
     }
 
     func bindViewModel() {
-        viewModel?.setName()
-        table.reloadData()
+        self.viewModel?.bindClosure = { [weak self] data, success in
+            if success {
+                DispatchQueue.main.async {
+                    self?.table.reloadData()
+                }
+            }
+        }
+    }
+    
+    func loadNextPage() {
+        viewModel?.nextPage()
+        
+        if !(viewModel?.pagesIsCancel ?? false) {
+            table.reloadData()
+        }
+        
+        
     }
 }
 
 extension MainTableWithHeroesViewController {
     func setupUI() {
-        view.addSubview(table)
         table.dataSource = self
         table.delegate = self
-        table.frame = view.bounds
+        view.addSubview(table)
     }
 }
 
 extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.model.count ?? 0
+        
+        viewModel?.model?.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "proba", for: indexPath)
-        cell.textLabel?.text = viewModel?.labels[indexPath.row]
-        
+        cell.textLabel?.text = self.viewModel?.model?[indexPath.row].name
         return cell
     }
-    
-
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let height = scrollView.contentSize.height
+        
+        if offsetY > height - scrollView.frame.height {
+            loadNextPage()
+        }
+    }
 }
 

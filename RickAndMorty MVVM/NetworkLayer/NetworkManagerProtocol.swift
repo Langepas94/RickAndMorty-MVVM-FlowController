@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol NetworkManagerProtocol {
-    
+enum FetchedData: String {
+    case allCharacters = "character"
+    case location = "location"
+    case episode = "episode"
+}
+
+protocol NetworkManagerBaseProtocol {
+    static func baseURL() -> String
 }

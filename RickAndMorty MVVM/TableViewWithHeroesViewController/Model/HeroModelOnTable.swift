@@ -12,4 +12,11 @@ struct HeroModelOnTable: HeroModelOnTableProtocol {
     
     var name: String
     
+    init(data: CharacterResult) {
+        self.name = data.name ?? ""
+    }
+    
+    internal init(name: String) {
+        self.name = name
+    }
 }
