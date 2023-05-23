@@ -18,13 +18,13 @@ class BaseNetworkManager: NetworkManagerBaseProtocol {
 class NetworkManager: BaseNetworkManager {
     
     func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void) {
+        
         var urlComonents = URLComponents(string: BaseNetworkManager.baseURL() + FetchedData.allCharacters.rawValue)
         let queryItems = [URLQueryItem(name: "page", value: "\(page)")]
         urlComonents?.queryItems = queryItems
-        let ur = urlComonents?.url
+        let completedURL = urlComonents?.url
         
-        
-        guard var url = ur else { return }
+        guard var url = completedURL else { return }
         
 
         let task = URLSession.shared.dataTask(with: url) { data, _, error in

@@ -9,11 +9,12 @@ import UIKit
 
 class MainTableWithHeroesViewController: UIViewController  {
     
+    let searchController = UISearchController(searchResultsController: nil)
     var viewModel: HeroOnMainTableViewModelProtocol? = HeroOnMainTableViewModel()
     
     var table: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "proba")
+        table.register(MainTableHeroesCell.self, forCellReuseIdentifier: MainTableHeroesCell.id)
         table.frame = UIScreen.main.bounds
         return table
     }()
@@ -22,11 +23,15 @@ class MainTableWithHeroesViewController: UIViewController  {
         super.viewDidLoad()
         
         setupUI()
+        
+        navigationItem.searchController = searchController
+
         bindViewModel()
+        
     }
 
     func bindViewModel() {
-        self.viewModel?.bindClosure = { [weak self] data, success in
+        self.viewModel?.bindClosure = { [weak self] success in
             if success {
                 DispatchQueue.main.async {
                     self?.table.reloadData()
@@ -41,8 +46,6 @@ class MainTableWithHeroesViewController: UIViewController  {
         if !(viewModel?.pagesIsCancel ?? false) {
             table.reloadData()
         }
-        
-        
     }
 }
 
@@ -50,7 +53,9 @@ extension MainTableWithHeroesViewController {
     func setupUI() {
         table.dataSource = self
         table.delegate = self
+        searchController.searchBar.delegate = self
         view.addSubview(table)
+        table.separatorStyle = .none
     }
 }
 
@@ -62,8 +67,11 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = table.dequeueReusableCell(withIdentifier: "proba", for: indexPath)
-        cell.textLabel?.text = self.viewModel?.model?[indexPath.row].name
+        let cell = table.dequeueReusableCell(withIdentifier: MainTableHeroesCell.id, for: indexPath) as! MainTableHeroesCell
+
+        let model = self.viewModel?.model?[indexPath.row]
+        cell.configureCell(with: model)
+        cell.selectionStyle = .none
         return cell
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -74,5 +82,18 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
             loadNextPage()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.goToDetailScreen()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
 }
 
+extension MainTableWithHeroesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+}

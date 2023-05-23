@@ -8,13 +8,23 @@
 import Foundation
 
 protocol HeroOnMainTableViewModelProtocol {
-//    var state: HeroOnMainTableViewModelStates { get set }
-//    func updateViewState()
+    
     var model: [HeroModelOnTableProtocol]? { get set }
-    func fetchData()
-    var bindClosure: (([HeroModelOnTableProtocol]?, Bool) -> Void)? { get set }
+    
+//    var filteredModel: [HeroModelOnTableProtocol]? { get set }
+    
+//    func fetchData()
+    
+    var bindClosure: ((Bool) -> Void)? { get set }
+    
     func nextPage()
+    
+    func goToDetailScreen()
+    
     var currentPage: Int { get set }
+    
     var pagesIsCancel: Bool { get set}
+    
     var maximumPage: Int? { get }
+    
 }

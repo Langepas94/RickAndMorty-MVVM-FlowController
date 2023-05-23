@@ -23,6 +23,10 @@
 		4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */; };
 		4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */; };
 		4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4410AECB2A1BEB2300B0D16B /* Kingfisher */; };
+		4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */; };
+		4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */; };
+		4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */; };
+		4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		4410AEC32A1B994500B0D16B /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkManager.swift; sourceTree = "<group>"; };
 		4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHeroesDataModel.swift; sourceTree = "<group>"; };
+		4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
+		4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowControllerProtocol.swift; sourceTree = "<group>"; };
+		4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCell.swift; sourceTree = "<group>"; };
+		4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCellProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +121,7 @@
 		4410AE812A1B841A00B0D16B /* RickAndMorty MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				4410AECD2A1CDEE600B0D16B /* DetailInfoViewController */,
 				4410AEC22A1B993700B0D16B /* FlowController */,
 				4410AEBF2A1B96D000B0D16B /* NetworkLayer */,
 				4410AEB32A1B883500B0D16B /* TableViewWithHeroesViewController */,
@@ -180,7 +189,8 @@
 		4410AEBE2A1B8C9F00B0D16B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
+				4410AED62A1D0BE600B0D16B /* MainTableHeroesCell */,
+				4410AED52A1D0BD600B0D16B /* MainScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				4410AEC32A1B994500B0D16B /* FlowController.swift */,
+				4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */,
 			);
 			path = FlowController;
 			sourceTree = "<group>";
@@ -209,6 +220,55 @@
 				4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */,
 			);
 			path = NetworkHeroesDataModel;
+			sourceTree = "<group>";
+		};
+		4410AECD2A1CDEE600B0D16B /* DetailInfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4410AED42A1CE5A900B0D16B /* Model */,
+				4410AED32A1CE5A200B0D16B /* ViewModel */,
+				4410AED22A1CE59A00B0D16B /* View */,
+			);
+			path = DetailInfoViewController;
+			sourceTree = "<group>";
+		};
+		4410AED22A1CE59A00B0D16B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4410AED32A1CE5A200B0D16B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4410AED42A1CE5A900B0D16B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4410AED52A1D0BD600B0D16B /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		4410AED62A1D0BE600B0D16B /* MainTableHeroesCell */ = {
+			isa = PBXGroup;
+			children = (
+				4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */,
+				4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */,
+			);
+			path = MainTableHeroesCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,10 +408,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */,
+				4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */,
+				4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */,
 				4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */,
 				4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */,
 				4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */,
 				4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */,
+				4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */,
+				4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */,
 				4410AEB82A1B88E700B0D16B /* HeroModelOnTable.swift in Sources */,
 				4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */,
 				4410AE872A1B841A00B0D16B /* MainTableWithHeroesViewController.swift in Sources */,

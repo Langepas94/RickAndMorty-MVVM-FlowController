@@ -10,13 +10,16 @@ import UIKit
 
 struct HeroModelOnTable: HeroModelOnTableProtocol {
     
+    var image: String
     var name: String
     
     init(data: CharacterResult) {
         self.name = data.name ?? ""
+        self.image = data.image ?? ""
     }
     
-    internal init(name: String) {
+    internal init(name: String, image: String) {
         self.name = name
+        self.image = image
     }
 }

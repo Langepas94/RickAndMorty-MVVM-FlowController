@@ -11,5 +11,6 @@ import UIKit
 protocol HeroModelOnTableProtocol {
     
     var name: String { get set}
+    var image: String { get set}
     init(data: CharacterResult)
 }

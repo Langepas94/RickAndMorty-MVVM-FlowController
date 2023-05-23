@@ -15,6 +15,7 @@ enum HeroOnMainTableViewModelStates {
 }
 
 class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
+    
     var maximumPage: Int?
     
     var pagesIsCancel: Bool = false
@@ -25,9 +26,11 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
     var model: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
     
-    var bindClosure: (([HeroModelOnTableProtocol]?, Bool) -> Void)?
+    var bindClosure: ((Bool) -> Void)?
     
-    func fetchData() {
+    weak var flowController: FlowController?
+    
+    private func fetchData() {
         
         self.network.getAllCharacters(page: currentPage) { [weak self] result in
             
@@ -40,11 +43,11 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
                     self?.maximumPage = data?.info?.pages
                    
                     self?.model?.append(contentsOf: heroModels ?? [])
-                    self?.handleResponse(data: self?.model, success: true)
+                    self?.handleResponse(success: true)
                 }
               
             case .failure(let error):
-                self?.handleResponse(data: nil, success: false)
+                self?.handleResponse(success: false)
                 print(error)
             }
         }
@@ -53,16 +56,22 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     func nextPage() {
         if currentPage < maximumPage ?? 0 {
             currentPage += 1
-            fetchData()
+            
+                fetchData()
+            
         } else if currentPage == maximumPage {
             pagesIsCancel = true
         }
     }
     
-    func handleResponse(data: [HeroModelOnTableProtocol]?, success: Bool ) {
+    func handleResponse(success: Bool ) {
         if let bindClosure = self.bindClosure {
-            bindClosure(data, success)
+            bindClosure(success)
         }
+    }
+    
+    func goToDetailScreen() {
+        flowController?.goToDetailScreen()
     }
     
     init () {
