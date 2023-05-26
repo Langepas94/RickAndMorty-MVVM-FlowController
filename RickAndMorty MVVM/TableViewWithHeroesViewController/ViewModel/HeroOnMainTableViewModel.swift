@@ -7,13 +7,6 @@
 
 import Foundation
 
-enum HeroOnMainTableViewModelStates {
-    case loading
-    case success(data: [HeroModelOnTableProtocol])
-    case failure
-    case none
-}
-
 class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
     var maximumPage: Int?
@@ -27,6 +20,8 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     var model: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
     
     var bindClosure: ((Bool) -> Void)?
+     
+    var passData: ((HeroModelOnTableProtocol) -> Void)?
     
     weak var flowController: FlowController?
     
@@ -70,9 +65,14 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
         }
     }
     
-    func goToDetailScreen() {
+    func goToDetailScreen(index: Int) {
+
         flowController?.goToDetailScreen()
+        guard let returnedModel = model?[index] else { return }
+        passData?(returnedModel)
+        
     }
+    
     
     init () {
         fetchData()

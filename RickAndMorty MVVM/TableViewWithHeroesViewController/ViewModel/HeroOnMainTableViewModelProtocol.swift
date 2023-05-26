@@ -11,15 +11,11 @@ protocol HeroOnMainTableViewModelProtocol {
     
     var model: [HeroModelOnTableProtocol]? { get set }
     
-//    var filteredModel: [HeroModelOnTableProtocol]? { get set }
-    
-//    func fetchData()
-    
     var bindClosure: ((Bool) -> Void)? { get set }
     
     func nextPage()
     
-    func goToDetailScreen()
+    func goToDetailScreen(index: Int)
     
     var currentPage: Int { get set }
     

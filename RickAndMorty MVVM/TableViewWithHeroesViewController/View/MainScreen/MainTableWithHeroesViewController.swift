@@ -27,7 +27,7 @@ class MainTableWithHeroesViewController: UIViewController  {
         navigationItem.searchController = searchController
 
         bindViewModel()
-        
+
     }
 
     func bindViewModel() {
@@ -84,7 +84,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel?.goToDetailScreen()
+        viewModel?.goToDetailScreen(index: indexPath.item)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

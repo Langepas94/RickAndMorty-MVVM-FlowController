@@ -15,27 +15,36 @@ protocol MainTableWithHeroesViewControllerProtocol:  UIViewController, UITableVi
 }
 
 final class FlowController: FlowControllerProtocol {
+    // navigation controller
+    // в иниты все засунуть
+    let mainView = MainTableWithHeroesViewController()
+    let detailView = DetailInfoViewController()
     var navigationController: UINavigationController
+    let viewModel = HeroOnMainTableViewModel()
     
     func loadingMainScreen() {
         goToMainScreen()
     }
+    
+    func goToMainScreen() {
+        
+        viewModel.flowController = self
+        mainView.viewModel = viewModel
+        navigationController.pushViewController(mainView, animated: false)
+
+    }
+    
+    func goToDetailScreen() {
+        
+        viewModel.passData = {  model in
+            print(model)
+        }
+        
+        navigationController.present(detailView, animated: true)
+    }
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    func goToMainScreen() {
-        let vc = MainTableWithHeroesViewController()
-        let viewModel = HeroOnMainTableViewModel()
-        viewModel.flowController = self
-        vc.viewModel = viewModel
-        navigationController.pushViewController(vc, animated: false)
-    }
-    
-    func goToDetailScreen() {
-        let vc = DetailInfoViewController()
-//        navigationController.pushViewController(vc, animated: true)
-        navigationController.present(vc, animated: true)
-    }
-
 }

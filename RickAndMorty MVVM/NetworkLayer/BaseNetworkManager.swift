@@ -26,7 +26,6 @@ class NetworkManager: BaseNetworkManager {
         
         guard var url = completedURL else { return }
         
-
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 completion(.failure(error?.localizedDescription as! Error))
@@ -41,7 +40,6 @@ class NetworkManager: BaseNetworkManager {
         }
         
         task.resume()
-        
         
     }
     

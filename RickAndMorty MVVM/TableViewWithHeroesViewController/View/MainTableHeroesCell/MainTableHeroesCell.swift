@@ -51,9 +51,6 @@ extension MainTableHeroesCell: MainTableHeroesCellProtocol {
             name.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20)
         
         ])
-      
-        //        name.frame = CGRect(x: 0, y: 0, width: 300, height: 20)
-//        name.center = center
     }
     
     
