@@ -12,5 +12,7 @@ protocol HeroModelOnTableProtocol {
     
     var name: String { get set}
     var image: String { get set}
+    var description: String { get set }
+    
     init(data: CharacterResult)
 }

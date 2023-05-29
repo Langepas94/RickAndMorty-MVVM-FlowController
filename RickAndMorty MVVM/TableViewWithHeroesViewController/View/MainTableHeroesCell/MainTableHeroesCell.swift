@@ -13,6 +13,8 @@ class MainTableHeroesCell: UITableViewCell {
     var name: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -20,10 +22,20 @@ class MainTableHeroesCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
-        image.layer.cornerRadius = 20
         return image
     }()
+    var smallDescription: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.textColor = .gray
+        return label
+    }()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        image.layer.cornerRadius = image.frame.height / 2
+    }
 }
 
 extension MainTableHeroesCell: MainTableHeroesCellProtocol {
@@ -34,12 +46,14 @@ extension MainTableHeroesCell: MainTableHeroesCellProtocol {
         setupUI()
         name.text = data?.name
         image.kf.setImage(with: URL(string: data?.image ?? ""))
+        smallDescription.text = data?.description
     }
     
     func setupUI() {
         
         addSubview(name)
         addSubview(image)
+        addSubview(smallDescription)
         NSLayoutConstraint.activate([
         
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
@@ -48,8 +62,10 @@ extension MainTableHeroesCell: MainTableHeroesCellProtocol {
             image.heightAnchor.constraint(equalToConstant: 90),
             image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            name.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20)
-        
+            name.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
+            name.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            smallDescription.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
+            smallDescription.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 12),
         ])
     }
     

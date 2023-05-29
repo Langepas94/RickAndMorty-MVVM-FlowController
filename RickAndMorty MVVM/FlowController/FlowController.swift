@@ -21,6 +21,7 @@ final class FlowController: FlowControllerProtocol {
     let detailView = DetailInfoViewController()
     var navigationController: UINavigationController
     let viewModel = HeroOnMainTableViewModel()
+    let detailViewModel = DetailHeroViewModel()
     
     func loadingMainScreen() {
         goToMainScreen()
@@ -30,21 +31,24 @@ final class FlowController: FlowControllerProtocol {
         
         viewModel.flowController = self
         mainView.viewModel = viewModel
+        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(mainView, animated: false)
 
     }
     
     func goToDetailScreen() {
         
+        detailView.viewModel = detailViewModel
         viewModel.passData = {  model in
-            print(model)
+            self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
+            self.navigationController.present(self.detailView, animated: true)
+
         }
-        
-        navigationController.present(detailView, animated: true)
     }
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        
     }
     
 }

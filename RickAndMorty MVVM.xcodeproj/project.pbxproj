@@ -27,6 +27,12 @@
 		4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */; };
 		4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */; };
 		4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */; };
+		44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */; };
+		44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992002A248BD9005AD635 /* DetailHeroModel.swift */; };
+		44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */; };
+		44B992052A248F4F005AD635 /* DetailHeroVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */; };
+		44B992072A24954D005AD635 /* DetailInfoViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */; };
+		44B9920D2A24B995005AD635 /* DetailInfoViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +76,12 @@
 		4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowControllerProtocol.swift; sourceTree = "<group>"; };
 		4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCell.swift; sourceTree = "<group>"; };
 		4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCellProtocol.swift; sourceTree = "<group>"; };
+		44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModelProtocol.swift; sourceTree = "<group>"; };
+		44B992002A248BD9005AD635 /* DetailHeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModel.swift; sourceTree = "<group>"; };
+		44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroViewModelProtocol.swift; sourceTree = "<group>"; };
+		44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroVIewModel.swift; sourceTree = "<group>"; };
+		44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewControllerProtocol.swift; sourceTree = "<group>"; };
+		44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailInfoViewController + extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 		4410AE812A1B841A00B0D16B /* RickAndMorty MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				44B9920B2A24B97D005AD635 /* Extensions */,
 				4410AECD2A1CDEE600B0D16B /* DetailInfoViewController */,
 				4410AEC22A1B993700B0D16B /* FlowController */,
 				4410AEBF2A1B96D000B0D16B /* NetworkLayer */,
@@ -236,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */,
+				44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +257,8 @@
 		4410AED32A1CE5A200B0D16B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */,
+				44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -250,6 +266,8 @@
 		4410AED42A1CE5A900B0D16B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */,
+				44B992002A248BD9005AD635 /* DetailHeroModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -269,6 +287,14 @@
 				4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */,
 			);
 			path = MainTableHeroesCell;
+			sourceTree = "<group>";
+		};
+		44B9920B2A24B97D005AD635 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +435,10 @@
 			files = (
 				4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */,
 				4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */,
+				44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */,
+				44B992072A24954D005AD635 /* DetailInfoViewControllerProtocol.swift in Sources */,
+				44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */,
+				44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */,
 				4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */,
 				4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */,
 				4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */,
@@ -420,7 +450,9 @@
 				4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */,
 				4410AE872A1B841A00B0D16B /* MainTableWithHeroesViewController.swift in Sources */,
 				4410AEBB2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift in Sources */,
+				44B9920D2A24B995005AD635 /* DetailInfoViewController + extension.swift in Sources */,
 				4410AE832A1B841A00B0D16B /* AppDelegate.swift in Sources */,
+				44B992052A248F4F005AD635 /* DetailHeroVIewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

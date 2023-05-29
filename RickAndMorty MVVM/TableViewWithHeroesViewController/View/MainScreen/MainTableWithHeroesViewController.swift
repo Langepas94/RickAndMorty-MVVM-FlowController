@@ -27,7 +27,7 @@ class MainTableWithHeroesViewController: UIViewController  {
         navigationItem.searchController = searchController
 
         bindViewModel()
-
+        
     }
 
     func bindViewModel() {
@@ -51,11 +51,13 @@ class MainTableWithHeroesViewController: UIViewController  {
 
 extension MainTableWithHeroesViewController {
     func setupUI() {
+        
         table.dataSource = self
         table.delegate = self
         searchController.searchBar.delegate = self
         view.addSubview(table)
         table.separatorStyle = .none
+        title = "Characters"
     }
 }
 
