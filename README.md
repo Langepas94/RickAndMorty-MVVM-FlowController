@@ -1,5 +1,5 @@
 # RickAndMorty-MVVM-FlowController
-Сама структура готова.
+
 Осталось:
 
 1. Рефакторинг
