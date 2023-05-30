@@ -17,7 +17,7 @@ struct DetailHeroModel: DetailHeroModelProtocol {
     
     var species: String
     
-    var type: String
+    var type: String 
     
     var gender: String
     

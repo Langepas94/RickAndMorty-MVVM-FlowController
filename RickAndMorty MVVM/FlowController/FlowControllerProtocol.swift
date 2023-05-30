@@ -10,5 +10,4 @@ import UIKit
 
 protocol FlowControllerProtocol {
     var navigationController: UINavigationController { get set }
-    func loadingMainScreen()
 }

@@ -10,7 +10,6 @@
 		4410AE832A1B841A00B0D16B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AE822A1B841A00B0D16B /* AppDelegate.swift */; };
 		4410AE872A1B841A00B0D16B /* MainTableWithHeroesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */; };
 		4410AE8C2A1B841B00B0D16B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4410AE8B2A1B841B00B0D16B /* Assets.xcassets */; };
-		4410AE8F2A1B841B00B0D16B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4410AE8D2A1B841B00B0D16B /* LaunchScreen.storyboard */; };
 		4410AE9A2A1B841B00B0D16B /* RickAndMorty_MVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AE992A1B841B00B0D16B /* RickAndMorty_MVVMTests.swift */; };
 		4410AEA42A1B841B00B0D16B /* RickAndMorty_MVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEA32A1B841B00B0D16B /* RickAndMorty_MVVMUITests.swift */; };
 		4410AEA62A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEA52A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift */; };
@@ -57,7 +56,6 @@
 		4410AE822A1B841A00B0D16B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableWithHeroesViewController.swift; sourceTree = "<group>"; };
 		4410AE8B2A1B841B00B0D16B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4410AE8E2A1B841B00B0D16B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4410AE902A1B841B00B0D16B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4410AE952A1B841B00B0D16B /* RickAndMorty MVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RickAndMorty MVVMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410AE992A1B841B00B0D16B /* RickAndMorty_MVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty_MVVMTests.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AE8B2A1B841B00B0D16B /* Assets.xcassets */,
-				4410AE8D2A1B841B00B0D16B /* LaunchScreen.storyboard */,
 				4410AE902A1B841B00B0D16B /* Info.plist */,
 			);
 			path = "App files";
@@ -407,7 +404,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4410AE8F2A1B841B00B0D16B /* LaunchScreen.storyboard in Resources */,
 				4410AE8C2A1B841B00B0D16B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,17 +483,6 @@
 			targetProxy = 4410AEA02A1B841B00B0D16B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4410AE8D2A1B841B00B0D16B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4410AE8E2A1B841B00B0D16B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4410AEA72A1B841B00B0D16B /* Debug */ = {
@@ -624,10 +609,10 @@
 				DEVELOPMENT_TEAM = Q7D95C8V9R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RickAndMorty MVVM/App files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rick and Morty MVVM";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,10 +637,10 @@
 				DEVELOPMENT_TEAM = Q7D95C8V9R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "RickAndMorty MVVM/App files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rick and Morty MVVM";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController()
         
         flowController = FlowController(navigationController: navigationController)
-        flowController?.loadingMainScreen()
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

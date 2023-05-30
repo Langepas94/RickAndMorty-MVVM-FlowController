@@ -11,7 +11,10 @@ protocol HeroOnMainTableViewModelProtocol {
     
     var model: [HeroModelOnTableProtocol]? { get set }
     
+    var filteredModel: [HeroModelOnTableProtocol]? { get set }
+    
     var bindClosure: ((Bool) -> Void)? { get set }
+    var bindClosureFiltered: ((Bool) -> Void)? { get set }
     
     func nextPage()
     
@@ -23,4 +26,9 @@ protocol HeroOnMainTableViewModelProtocol {
     
     var maximumPage: Int? { get }
     
+    func getFiltered(phrase: String)
+    
+    var isFiltered: Bool { get set }
+    
+    func zeroFiltered()
 }

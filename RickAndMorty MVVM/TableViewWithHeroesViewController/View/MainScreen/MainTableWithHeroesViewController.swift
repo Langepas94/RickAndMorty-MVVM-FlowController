@@ -25,16 +25,28 @@ class MainTableWithHeroesViewController: UIViewController  {
         setupUI()
         
         navigationItem.searchController = searchController
-
-        bindViewModel()
         
+        bindViewModel()
     }
-
+    
+    // MARK: - Binding ViewModel
     func bindViewModel() {
-        self.viewModel?.bindClosure = { [weak self] success in
-            if success {
-                DispatchQueue.main.async {
-                    self?.table.reloadData()
+        
+        if self.viewModel?.isFiltered == false {
+            table.reloadData()
+            self.viewModel?.bindClosure = { [weak self] success in
+                if success {
+                    DispatchQueue.main.async {
+                        self?.table.reloadData()
+                    }
+                }
+            }
+        } else if self.viewModel?.isFiltered == true {
+            self.viewModel?.bindClosureFiltered = { [weak self] success in
+                if success {
+                    DispatchQueue.main.async {
+                        self?.table.reloadData()
+                    }
                 }
             }
         }
@@ -50,6 +62,7 @@ class MainTableWithHeroesViewController: UIViewController  {
 }
 
 extension MainTableWithHeroesViewController {
+    // MARK: - Setup ui
     func setupUI() {
         
         table.dataSource = self
@@ -64,18 +77,30 @@ extension MainTableWithHeroesViewController {
 extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        viewModel?.model?.count ?? 0
         
+        if viewModel?.isFiltered == false {
+            return viewModel?.model?.count ?? 0
+            
+        } else {
+            return viewModel?.filteredModel?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: MainTableHeroesCell.id, for: indexPath) as! MainTableHeroesCell
-
-        let model = self.viewModel?.model?[indexPath.row]
-        cell.configureCell(with: model)
+        
+        if viewModel?.isFiltered == false {
+            let model = self.viewModel?.model?[indexPath.row]
+            cell.configureCell(with: model)
+        } else {
+            let model = self.viewModel?.filteredModel?[indexPath.row]
+            cell.configureCell(with: model)
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
+    // MARK: - Pagination
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let height = scrollView.contentSize.height
@@ -96,6 +121,25 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
 
 extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        self.viewModel?.zeroFiltered()
+        
+        if searchText.count > 1 {
+            self.viewModel?.isFiltered = true
+            self.viewModel?.getFiltered(phrase: searchText.lowercased())
+            
+        } else {
+            self.viewModel?.isFiltered = false
+            self.viewModel?.getFiltered(phrase: searchText.lowercased())
+        }
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.viewModel?.zeroFiltered()
+        self.viewModel?.isFiltered = false
+        bindViewModel()
+        
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.bindViewModel()
     }
 }

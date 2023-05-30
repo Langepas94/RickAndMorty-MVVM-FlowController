@@ -16,7 +16,6 @@ extension DetailInfoViewController {
             label.text = string
             label.translatesAutoresizingMaskIntoConstraints = false
             label.font = .systemFont(ofSize: 22, weight: .medium)
-
             label.textColor = .systemGray
             label.textAlignment = .left
             label.adjustsFontSizeToFitWidth = true

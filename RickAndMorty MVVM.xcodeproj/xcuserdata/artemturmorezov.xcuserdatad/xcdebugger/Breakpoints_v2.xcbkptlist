@@ -3,4 +3,85 @@
    uuid = "53BD8921-FD4B-4240-A6E5-C1C89EECDEE6"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94EAD97B-BFDD-4392-AC8C-699C536B7EDB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty MVVM/TableViewWithHeroesViewController/View/MainScreen/MainTableWithHeroesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AE2CD329-BDFB-4765-AE0B-BF41543271BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty MVVM/TableViewWithHeroesViewController/ViewModel/HeroOnMainTableViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "fetchData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AE2CD329-BDFB-4765-AE0B-BF41543271BF - 4eaf1e0516bc6f1a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVM.HeroOnMainTableViewModel.fetchData() -&gt; ()"
+                  moduleName = "RickAndMorty MVVM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVM/TableViewWithHeroesViewController/ViewModel/HeroOnMainTableViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "AE2CD329-BDFB-4765-AE0B-BF41543271BF - a135c8517cc3f2e4"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Optional&lt;RickAndMorty_MVVM.NetworkHeroesDataModel&gt;, Swift.Error&gt;) -&gt; () in RickAndMorty_MVVM.HeroOnMainTableViewModel.fetchData() -&gt; ()"
+                  moduleName = "RickAndMorty MVVM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVM/TableViewWithHeroesViewController/ViewModel/HeroOnMainTableViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  uuid = "AE2CD329-BDFB-4765-AE0B-BF41543271BF - 7b41394f9ef934d5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Result&lt;Swift.Optional&lt;RickAndMorty_MVVM.NetworkHeroesDataModel&gt;, Swift.Error&gt;) -&gt; () in RickAndMorty_MVVM.HeroOnMainTableViewModel.fetchData() -&gt; ()"
+                  moduleName = "RickAndMorty MVVM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVM/TableViewWithHeroesViewController/ViewModel/HeroOnMainTableViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

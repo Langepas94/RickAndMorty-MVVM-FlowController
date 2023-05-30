@@ -17,4 +17,5 @@ protocol DetailInfoViewControllerProtocol {
     var gender: UILabel { get set }
     var origin: UILabel { get set }
     var location: UILabel { get set }
+    var viewModel: DetailHeroViewModelProtocol? { get set }
 }

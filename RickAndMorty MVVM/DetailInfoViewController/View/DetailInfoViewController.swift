@@ -22,7 +22,7 @@ class DetailInfoViewController: UIViewController {
     var status: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -30,7 +30,7 @@ class DetailInfoViewController: UIViewController {
     var species: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -38,7 +38,7 @@ class DetailInfoViewController: UIViewController {
     var type: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -46,7 +46,7 @@ class DetailInfoViewController: UIViewController {
     var gender: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -54,7 +54,7 @@ class DetailInfoViewController: UIViewController {
     var origin: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -62,7 +62,7 @@ class DetailInfoViewController: UIViewController {
     var location: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .light)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
         return label
@@ -81,7 +81,6 @@ class DetailInfoViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.distribution = .fill
-        
         return stack
     }()
     
@@ -110,7 +109,9 @@ class DetailInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setupUI()
+        title = heroName.text
     }
     
 }
@@ -118,10 +119,10 @@ class DetailInfoViewController: UIViewController {
 extension DetailInfoViewController: DetailInfoViewControllerProtocol {}
 
 extension DetailInfoViewController {
-    
+    // MARK: - Setup UI
     func setupUI() {
         view.backgroundColor = .white
-        view.addSubview(heroName)
+
         view.addSubview(heroImage)
         view.addSubview(mainStackViewWithIncludedStacks)
         view.addSubview(staticStackView)
@@ -138,13 +139,9 @@ extension DetailInfoViewController {
         mainStackViewWithIncludedStacks.addArrangedSubview(heroDescriptionStackView)
         
         viewModel?.configureData(self)
-        
         NSLayoutConstraint.activate([
-            heroName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            heroName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            heroName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            heroImage.topAnchor.constraint(equalTo: heroName.bottomAnchor, constant: 32),
+            heroImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             heroImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             heroImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
