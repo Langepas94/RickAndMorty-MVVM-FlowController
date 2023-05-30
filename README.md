@@ -1,5 +1,5 @@
 # RickAndMorty-MVVM-FlowController
-![alt text]([http://url/to/img.png](https://github.com/Langepas94/RickAndMorty-MVVM-FlowController/assets/108129792/875f7ac6-ad6d-4aae-a8d8-e34c4d097217))
+![alt text](https://user-images.githubusercontent.com/108129792/241874818-875f7ac6-ad6d-4aae-a8d8-e34c4d097217.png)
 Осталось:
 
 1. Рефакторинг
