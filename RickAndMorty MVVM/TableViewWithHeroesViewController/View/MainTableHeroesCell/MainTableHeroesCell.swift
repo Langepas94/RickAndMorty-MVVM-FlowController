@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MainTableHeroesCell: UITableViewCell {
+final class MainTableHeroesCell: UITableViewCell {
     
     var name: UILabel = {
         let label = UILabel()

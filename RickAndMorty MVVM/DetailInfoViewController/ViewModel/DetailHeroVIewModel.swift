@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailHeroViewModel: DetailHeroViewModelProtocol {
+final class DetailHeroViewModel: DetailHeroViewModelProtocol {
     
     var model: DetailHeroModel?
     

@@ -19,13 +19,14 @@
 		4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */; };
 		4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */; };
 		4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC32A1B994500B0D16B /* FlowController.swift */; };
-		4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */; };
 		4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */; };
 		4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4410AECB2A1BEB2300B0D16B /* Kingfisher */; };
 		4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */; };
 		4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */; };
 		4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */; };
 		4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */; };
+		444A63022A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */; };
+		444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63042A29BF9600FF922B /* NetworkManager.swift */; };
 		44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */; };
 		44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992002A248BD9005AD635 /* DetailHeroModel.swift */; };
 		44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */; };
@@ -68,12 +69,13 @@
 		4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroOnMainTableViewModelProtocol.swift; sourceTree = "<group>"; };
 		4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		4410AEC32A1B994500B0D16B /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
-		4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkManager.swift; sourceTree = "<group>"; };
 		4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHeroesDataModel.swift; sourceTree = "<group>"; };
 		4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowControllerProtocol.swift; sourceTree = "<group>"; };
 		4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCell.swift; sourceTree = "<group>"; };
 		4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCellProtocol.swift; sourceTree = "<group>"; };
+		444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableWithHeroesViewControllerProtocol.swift; sourceTree = "<group>"; };
+		444A63042A29BF9600FF922B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModelProtocol.swift; sourceTree = "<group>"; };
 		44B992002A248BD9005AD635 /* DetailHeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModel.swift; sourceTree = "<group>"; };
 		44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		4410AEB32A1B883500B0D16B /* TableViewWithHeroesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				444A63032A29BF2D00FF922B /* Controller */,
 				4410AEBE2A1B8C9F00B0D16B /* View */,
 				4410AEB92A1B8BE300B0D16B /* ViewModel */,
 				4410AEB42A1B885500B0D16B /* Model */,
@@ -200,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AED62A1D0BE600B0D16B /* MainTableHeroesCell */,
-				4410AED52A1D0BD600B0D16B /* MainScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,7 +212,7 @@
 			children = (
 				4410AEC72A1BD79F00B0D16B /* NetworkHeroesDataModel */,
 				4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */,
-				4410AEC52A1BD56000B0D16B /* BaseNetworkManager.swift */,
+				444A63042A29BF9600FF922B /* NetworkManager.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -235,6 +237,7 @@
 		4410AECD2A1CDEE600B0D16B /* DetailInfoViewController */ = {
 			isa = PBXGroup;
 			children = (
+				444A63082A29D07200FF922B /* Controller */,
 				4410AED42A1CE5A900B0D16B /* Model */,
 				4410AED32A1CE5A200B0D16B /* ViewModel */,
 				4410AED22A1CE59A00B0D16B /* View */,
@@ -245,8 +248,6 @@
 		4410AED22A1CE59A00B0D16B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */,
-				44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
+				444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -284,6 +286,23 @@
 				4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */,
 			);
 			path = MainTableHeroesCell;
+			sourceTree = "<group>";
+		};
+		444A63032A29BF2D00FF922B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4410AED52A1D0BD600B0D16B /* MainScreen */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		444A63082A29D07200FF922B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */,
+				44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		44B9920B2A24B97D005AD635 /* Extensions */ = {
@@ -429,13 +448,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4410AEC62A1BD56000B0D16B /* BaseNetworkManager.swift in Sources */,
 				4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */,
 				44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */,
 				44B992072A24954D005AD635 /* DetailInfoViewControllerProtocol.swift in Sources */,
+				444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */,
 				44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */,
 				44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */,
 				4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */,
+				444A63022A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift in Sources */,
 				4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */,
 				4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */,
 				4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */,

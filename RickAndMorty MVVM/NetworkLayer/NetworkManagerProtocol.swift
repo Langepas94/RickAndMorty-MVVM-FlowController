@@ -13,6 +13,11 @@ enum FetchedData: String {
     case episode = "episode"
 }
 
-protocol NetworkManagerBaseProtocol {
+protocol NetworkServiceProtocol {
+    
     static func baseURL() -> String
+    
+    func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
+    
+    func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
 }

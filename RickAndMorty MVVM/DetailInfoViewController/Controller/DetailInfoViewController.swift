@@ -99,7 +99,7 @@ class DetailInfoViewController: UIViewController {
         return stack
     }()
     
-    var viewModel: DetailHeroViewModelProtocol? = DetailHeroViewModel()
+    var viewModel: DetailHeroViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +112,15 @@ class DetailInfoViewController: UIViewController {
         
         setupUI()
         title = heroName.text
+    }
+    
+    init(viewModel: DetailHeroViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }
@@ -138,7 +147,7 @@ extension DetailInfoViewController {
         mainStackViewWithIncludedStacks.addArrangedSubview(staticStackView)
         mainStackViewWithIncludedStacks.addArrangedSubview(heroDescriptionStackView)
         
-        viewModel?.configureData(self)
+        viewModel.configureData(self)
         NSLayoutConstraint.activate([
             
             heroImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
+final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
     var bindClosureFiltered: ((Bool) -> Void)?
     
@@ -36,22 +36,22 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     private func fetchData() {
         
         self.network.getAllCharacters(page: currentPage) { [weak self] result in
-            
+            guard let self = self else { return }
             switch result {
                 
             case .success(let data):
                 DispatchQueue.main.async {
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self?.maximumPage = data?.info?.pages
+                    self.maximumPage = data?.info?.pages
                    
-                    self?.model?.append(contentsOf: heroModels ?? [])
+                    self.model?.append(contentsOf: heroModels ?? [])
                     
-                    self?.handleResponse(success: true)
+                    self.handleResponse(success: true)
                 }
               
             case .failure(let error):
-                self?.handleResponse(success: false)
+                self.handleResponse(success: false)
                 print(error)
             }
         }
@@ -102,18 +102,20 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     }
     // MARK: - Fetch Filtered Data
     func getFiltered(phrase: String) {
-        self.network.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self] result in
+        self.network.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
+            result in
+            guard let self = self else { return }
             switch result {
                 
             case .success(let data):
                 DispatchQueue.main.async {
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self?.maximumPage = data?.info?.pages
+                    self.maximumPage = data?.info?.pages
                     
-                    self?.filteredModel?.append(contentsOf: heroModels ?? [])
+                    self.filteredModel?.append(contentsOf: heroModels ?? [])
 
-                    self?.handleResponse(success: true)
+                    self.handleResponse(success: true)
                 }
             case .failure(let error): break
             }
@@ -125,6 +127,7 @@ class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     }
     
     init () {
+        
         fetchData()
         
     }
