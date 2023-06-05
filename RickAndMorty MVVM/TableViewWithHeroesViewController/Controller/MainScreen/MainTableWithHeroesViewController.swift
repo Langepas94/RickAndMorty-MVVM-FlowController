@@ -8,19 +8,24 @@
 import UIKit
 
 class MainTableWithHeroesViewController: UIViewController  {
-    
-    let searchController = UISearchController(searchResultsController: nil)
-
-    var viewModel: HeroOnMainTableViewModelProtocol
-    
+  
     var table: UITableView = {
         let table = UITableView()
         table.register(MainTableHeroesCell.self, forCellReuseIdentifier: MainTableHeroesCell.id)
         table.frame = UIScreen.main.bounds
-        
         table.separatorStyle = .none
         return table
     }()
+    
+    let errorView: SearchEmptyView = {
+        let errorView = SearchEmptyView()
+        errorView.isHidden = true
+        return errorView
+    }()
+    
+    let searchController = UISearchController(searchResultsController: nil)
+
+    var viewModel: HeroOnMainTableViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,7 @@ class MainTableWithHeroesViewController: UIViewController  {
         navigationItem.searchController = searchController
         
         bindViewModel()
+        
     }
     
     init(viewModel: HeroOnMainTableViewModelProtocol) {
@@ -44,10 +50,12 @@ class MainTableWithHeroesViewController: UIViewController  {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     // MARK: - Binding ViewModel
     func bindViewModel() {
-        
+    
         if self.viewModel.isFiltered == false {
+            errorView.isHidden = true
             table.reloadData()
             self.viewModel.bindClosure = { [weak self] success in
                 guard let self = self else { return }
@@ -58,8 +66,11 @@ class MainTableWithHeroesViewController: UIViewController  {
                 }
             }
         } else if self.viewModel.isFiltered == true {
+            
+            
             self.viewModel.bindClosureFiltered = { [weak self] success in
                 guard let self = self else { return }
+                
                 if success {
                     DispatchQueue.main.async {
                         self.table.reloadData()
@@ -84,7 +95,8 @@ extension MainTableWithHeroesViewController {
        
         searchController.searchBar.delegate = self
         view.addSubview(table)
-        
+        view.addSubview(errorView)
+        errorView.frame = CGRect(x: 0, y: view.center.y - 200, width: UIScreen.main.bounds.width, height: 200)
         title = "Characters"
     }
 }
@@ -93,11 +105,21 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if viewModel.isFiltered == false {
+            errorView.isHidden = true
             return viewModel.model?.count ?? 0
             
         } else {
+            
+            if viewModel.filteredModel?.count == 0 {
+                errorView.isHidden = false
+            } else {
+                errorView.isHidden = true
+            }
+           
             return viewModel.filteredModel?.count ?? 0
         }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,6 +129,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
             let model = self.viewModel.model?[indexPath.row]
             cell.configureCell(with: model)
         } else {
+            
             let model = self.viewModel.filteredModel?[indexPath.row]
             cell.configureCell(with: model)
         }
@@ -135,18 +158,19 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
 
 extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         self.viewModel.zeroFiltered()
         
         if searchText.count > 1 {
             self.viewModel.isFiltered = true
             self.viewModel.getFiltered(phrase: searchText.lowercased())
-            
+           
         } else {
             self.viewModel.isFiltered = false
             self.viewModel.getFiltered(phrase: searchText.lowercased())
         }
-        
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.viewModel.zeroFiltered()
         self.viewModel.isFiltered = false
@@ -156,4 +180,6 @@ extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.bindViewModel()
     }
+   
+
 }

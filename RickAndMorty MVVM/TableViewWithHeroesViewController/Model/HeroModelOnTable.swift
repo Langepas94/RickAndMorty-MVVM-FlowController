@@ -12,6 +12,7 @@ struct HeroModelOnTable: HeroModelOnTableProtocol {
     
     var description: String
     
+    var setIshiddenErrorView: Bool = true
     
     var image: String
     

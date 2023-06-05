@@ -24,6 +24,7 @@ final class MainTableHeroesCell: UITableViewCell {
         image.clipsToBounds = true
         return image
     }()
+    
     var smallDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
