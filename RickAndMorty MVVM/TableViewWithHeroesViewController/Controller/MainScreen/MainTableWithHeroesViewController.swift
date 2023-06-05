@@ -55,25 +55,31 @@ class MainTableWithHeroesViewController: UIViewController  {
     func bindViewModel() {
     
         if self.viewModel.isFiltered == false {
-            errorView.isHidden = true
+//            errorView.isHidden = true
             table.reloadData()
             self.viewModel.bindClosure = { [weak self] success in
                 guard let self = self else { return }
                 if success {
                     DispatchQueue.main.async {
+                        
                         self.table.reloadData()
                     }
                 }
             }
-        } else if self.viewModel.isFiltered == true {
-            
+        } else {
             
             self.viewModel.bindClosureFiltered = { [weak self] success in
                 guard let self = self else { return }
-                
+               
                 if success {
                     DispatchQueue.main.async {
+                        if self.viewModel.filteredModel?.count == 0 {
+                            self.errorView.isHidden = false
+                        } else {
+                            self.errorView.isHidden = true
+                        }
                         self.table.reloadData()
+                       
                     }
                 }
             }
@@ -83,7 +89,7 @@ class MainTableWithHeroesViewController: UIViewController  {
     func loadNextPage() {
         viewModel.nextPage()
         
-        if !(viewModel.pagesIsCancel ?? false) {
+        if !(viewModel.pagesIsCancel ) {
             table.reloadData()
         }
     }
@@ -110,11 +116,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
             
         } else {
             
-            if viewModel.filteredModel?.count == 0 {
-                errorView.isHidden = false
-            } else {
-                errorView.isHidden = true
-            }
+          
            
             return viewModel.filteredModel?.count ?? 0
         }
@@ -124,6 +126,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: MainTableHeroesCell.id, for: indexPath) as! MainTableHeroesCell
+       
         
         if viewModel.isFiltered == false {
             let model = self.viewModel.model?[indexPath.row]
@@ -132,6 +135,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
             
             let model = self.viewModel.filteredModel?[indexPath.row]
             cell.configureCell(with: model)
+           
         }
         
         cell.selectionStyle = .none
@@ -161,13 +165,14 @@ extension MainTableWithHeroesViewController: UISearchBarDelegate {
         
         self.viewModel.zeroFiltered()
         
-        if searchText.count > 1 {
+        if searchText.count >= 1 {
             self.viewModel.isFiltered = true
             self.viewModel.getFiltered(phrase: searchText.lowercased())
+         bindViewModel()
            
         } else {
             self.viewModel.isFiltered = false
-            self.viewModel.getFiltered(phrase: searchText.lowercased())
+            bindViewModel()
         }
     }
     
