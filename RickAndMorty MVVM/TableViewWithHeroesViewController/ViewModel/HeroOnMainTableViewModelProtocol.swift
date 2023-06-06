@@ -16,8 +16,6 @@ protocol HeroOnMainTableViewModelProtocol {
     
     func nextPage()
     
-    var passData: ((HeroModelOnTableProtocol) -> Void)? { get set }
-    
     func goToDetailScreen(index: Int)
     
     var currentPage: Int { get set }
@@ -33,6 +31,8 @@ protocol HeroOnMainTableViewModelProtocol {
     var flowController: FlowController? { get set }
     
     var updatePublisher: PassthroughSubject<Void, Never> { get set }
+    
+    var detailScreenPublisher: PassthroughSubject<HeroModelOnTableProtocol, Never> { get set } 
     
     func getFiltered(phrase: String)
 }

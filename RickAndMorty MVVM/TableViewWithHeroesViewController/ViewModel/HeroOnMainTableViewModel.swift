@@ -10,6 +10,8 @@ import Combine
 
 final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
+    var detailScreenPublisher =  PassthroughSubject<HeroModelOnTableProtocol, Never>()
+    
     var bindClosureFiltered: ((Bool) -> Void)?
     
     var maximumPage: Int?
@@ -24,8 +26,6 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     var model: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
     
     var filteredModel: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
-    
-    var passData: ((HeroModelOnTableProtocol) -> Void)?
     
     weak var flowController: FlowController?
     
@@ -78,15 +78,15 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     }
     
     func goToDetailScreen(index: Int) {
-        
-        flowController?.goToDetailScreen()
+                flowController?.goToDetailScreen()
         if isFiltered {
             guard let returnedModel = filteredModel?[index] else { return }
-            passData?(returnedModel)
+            detailScreenPublisher.send(returnedModel)
         } else {
             guard let returnedModel = model?[index] else { return }
-            passData?(returnedModel)
+            detailScreenPublisher.send(returnedModel)
         }
+
     }
     // MARK: - Fetch Filtered Data
     func getFiltered(phrase: String) {

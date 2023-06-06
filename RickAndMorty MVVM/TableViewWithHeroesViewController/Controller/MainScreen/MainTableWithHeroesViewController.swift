@@ -26,6 +26,8 @@ class MainTableWithHeroesViewController: UIViewController  {
     
     private var searchPublisher = PassthroughSubject<String, Never>()
     
+    private var detailScreenPublisher = PassthroughSubject<Int, Never>()
+    
     var cancellables: Set<AnyCancellable> = []
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -150,6 +152,7 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.goToDetailScreen(index: indexPath.item)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

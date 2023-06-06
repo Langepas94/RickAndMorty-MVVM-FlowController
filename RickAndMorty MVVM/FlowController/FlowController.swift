@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class FlowController: FlowControllerProtocol {
     
     var navigationController: UINavigationController
     var viewModel: HeroOnMainTableViewModelProtocol  = HeroOnMainTableViewModel()
     var detailViewModel: DetailHeroViewModelProtocol = DetailHeroViewModel()
+    var cancellables: Set<AnyCancellable> = []
     
     func goToMainScreen() {
         let mainView = MainTableWithHeroesViewController(viewModel: viewModel)
@@ -30,11 +32,13 @@ final class FlowController: FlowControllerProtocol {
         
         self.navigationController.navigationBar.topItem?.backBarButtonItem = backButton
         
-        viewModel.passData = {  model in
-            self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
-            
-            self.navigationController.pushViewController(detailView, animated: true)
-        }
+        viewModel.detailScreenPublisher
+            .sink { model in
+                print(model)
+                self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
+            }
+            .store(in: &cancellables)
+        self.navigationController.pushViewController(detailView, animated: true)
     }
     
     init(navigationController: UINavigationController) {
