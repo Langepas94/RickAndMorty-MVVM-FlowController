@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
@@ -24,37 +25,34 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     
     var filteredModel: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
     
-    var bindClosure: ((Bool) -> Void)?
-     
     var passData: ((HeroModelOnTableProtocol) -> Void)?
     
     weak var flowController: FlowController?
     
     var isFiltered: Bool = false
     
-    // MARK: - Fetch data
+    var cancellables: Set<AnyCancellable> = []
+    
+    var updatePublisher = PassthroughSubject<Void, Never>()
+    // MARK: - Fetch Data
     private func fetchData() {
-        
-        self.network.getAllCharacters(page: currentPage) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-                
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let charData = data?.results
-                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self.maximumPage = data?.info?.pages
-                   
-                    self.model?.append(contentsOf: heroModels ?? [])
-                    
-                    self.handleResponse(success: true)
+        self.network.loadAllHeroes(page: currentPage)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    self.updatePublisher.send()
+                case .failure(let error):
+                    print(error)
                 }
-              
-            case .failure(let error):
-                self.handleResponse(success: false)
-                print(error)
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                let charData = data.results
+                let heroModels = charData?.map{HeroModelOnTable(data: $0)}
+                self.maximumPage = data.info?.pages
+                self.model?.append(contentsOf: heroModels ?? [])
             }
-        }
+            .store(in: &cancellables)
     }
     
     func nextPage() {
@@ -62,7 +60,7 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
             if currentPage < maximumPage ?? 0 {
                 currentPage += 1
                 
-                    fetchData()
+                fetchData()
                 
             } else if currentPage == maximumPage {
                 pagesIsCancel = true
@@ -71,26 +69,16 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
             if filterCurrentPage < maximumPage ?? 0 {
                 filterCurrentPage += 1
                 
-                    fetchData()
+                fetchData()
                 
             } else if filterCurrentPage == maximumPage {
                 pagesIsCancel = true
             }
         }
-       
-    }
-    
-    func handleResponse(success: Bool ) {
-        if let bindClosure = self.bindClosure {
-            bindClosure(success)
-        }
-        if let bindClosure = self.bindClosureFiltered {
-            bindClosure(success)
-        }
     }
     
     func goToDetailScreen(index: Int) {
-
+        
         flowController?.goToDetailScreen()
         if isFiltered {
             guard let returnedModel = filteredModel?[index] else { return }
@@ -102,24 +90,25 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     }
     // MARK: - Fetch Filtered Data
     func getFiltered(phrase: String) {
-        self.network.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
-            result in
-            guard let self = self else { return }
-            switch result {
-                
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let charData = data?.results
-                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self.maximumPage = data?.info?.pages
+        self.network.loadFilteredHeroes(page: filterCurrentPage, phrase: phrase)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
                     
-                    self.filteredModel?.append(contentsOf: heroModels ?? [])
-
-                    self.handleResponse(success: true)
+                case .finished:
+                    self.updatePublisher.send()
+                case .failure(let error):
+                    print(error)
                 }
-            case .failure(let error): break
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                self.zeroFiltered()
+                let charData = data.results
+                let heroModels = charData?.map{HeroModelOnTable(data: $0)}
+                self.maximumPage = data.info?.pages
+                self.filteredModel?.append(contentsOf: heroModels ?? [])
             }
-        }
+            .store(in: &cancellables)
     }
     
     func zeroFiltered() {
@@ -127,9 +116,7 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
     }
     
     init () {
-        
         fetchData()
-        
     }
     
 }

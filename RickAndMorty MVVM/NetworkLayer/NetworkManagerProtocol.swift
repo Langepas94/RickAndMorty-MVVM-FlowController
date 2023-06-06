@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum FetchedData: String {
     case allCharacters = "character"
@@ -17,7 +18,7 @@ protocol NetworkServiceProtocol {
     
     static func baseURL() -> String
     
-    func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
+    func loadAllHeroes(page: Int) -> AnyPublisher<NetworkHeroesDataModel, Error>
     
-    func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
+    func loadFilteredHeroes(page: Int, phrase: String) -> AnyPublisher<NetworkHeroesDataModel, Error>
 }

@@ -49,7 +49,7 @@ extension MainTableHeroesCell: MainTableHeroesCellProtocol {
         image.kf.setImage(with: URL(string: data?.image ?? ""))
         smallDescription.text = data?.description
     }
-    
+    // MARK: = Setup cell
     func setupUI() {
         
         addSubview(name)

@@ -11,5 +11,4 @@ import UIKit.UITableView
 protocol MainTableWithHeroesViewControllerProtocol:  UIViewController, UITableViewDataSource, UITableViewDelegate {
     var viewModel: HeroOnMainTableViewModelProtocol { get set }
     var table: UITableView { get set }
-    func bindViewModel()
 }

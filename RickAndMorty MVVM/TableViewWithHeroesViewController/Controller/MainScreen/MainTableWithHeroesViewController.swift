@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class MainTableWithHeroesViewController: UIViewController  {
-  
+    
     var table: UITableView = {
         let table = UITableView()
         table.register(MainTableHeroesCell.self, forCellReuseIdentifier: MainTableHeroesCell.id)
@@ -23,8 +24,12 @@ class MainTableWithHeroesViewController: UIViewController  {
         return errorView
     }()
     
+    private var searchPublisher = PassthroughSubject<String, Never>()
+    
+    var cancellables: Set<AnyCancellable> = []
+    
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     var viewModel: HeroOnMainTableViewModelProtocol
     
     override func viewDidLoad() {
@@ -37,8 +42,7 @@ class MainTableWithHeroesViewController: UIViewController  {
         
         navigationItem.searchController = searchController
         
-        bindViewModel()
-        
+        publishersActions()
     }
     
     init(viewModel: HeroOnMainTableViewModelProtocol) {
@@ -50,40 +54,41 @@ class MainTableWithHeroesViewController: UIViewController  {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    // MARK: - Binding ViewModel
-    func bindViewModel() {
-    
-        if self.viewModel.isFiltered == false {
-//            errorView.isHidden = true
-            table.reloadData()
-            self.viewModel.bindClosure = { [weak self] success in
+    //MARK: - Publishers Setup
+    func publishersActions() {
+        viewModel.updatePublisher
+            .sink { [weak self] _ in
                 guard let self = self else { return }
-                if success {
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    if self.viewModel.filteredModel?.count == 0 {
                         
-                        self.table.reloadData()
+                        self.errorView.isHidden = false
+                    } else {
+                        self.errorView.isHidden = true
                     }
+                    self.table.reloadData()
                 }
             }
-        } else {
-            
-            self.viewModel.bindClosureFiltered = { [weak self] success in
+            .store(in: &cancellables)
+        
+        searchPublisher
+            .debounce(for: 0.2, scheduler: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                }
+            }, receiveValue: { [weak self] (searchString: String) in
                 guard let self = self else { return }
-               
-                if success {
-                    DispatchQueue.main.async {
-                        if self.viewModel.filteredModel?.count == 0 {
-                            self.errorView.isHidden = false
-                        } else {
-                            self.errorView.isHidden = true
-                        }
-                        self.table.reloadData()
-                       
-                    }
+                if searchString.count > 0 {
+                    self.viewModel.isFiltered = true
+                } else {
+                    self.viewModel.isFiltered = false
                 }
-            }
-        }
+                self.viewModel.getFiltered(phrase: searchString.lowercased())
+                self.table.reloadData()
+            })
+            .store(in: &cancellables)
     }
     
     func loadNextPage() {
@@ -98,7 +103,7 @@ class MainTableWithHeroesViewController: UIViewController  {
 extension MainTableWithHeroesViewController {
     // MARK: - Setup ui
     func setupUI() {
-       
+        
         searchController.searchBar.delegate = self
         view.addSubview(table)
         view.addSubview(errorView)
@@ -107,45 +112,37 @@ extension MainTableWithHeroesViewController {
     }
 }
 
+// MARK: - Table setup
 extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if viewModel.isFiltered == false {
             errorView.isHidden = true
             return viewModel.model?.count ?? 0
-            
         } else {
-            
-          
-           
             return viewModel.filteredModel?.count ?? 0
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: MainTableHeroesCell.id, for: indexPath) as! MainTableHeroesCell
-       
         
         if viewModel.isFiltered == false {
             let model = self.viewModel.model?[indexPath.row]
             cell.configureCell(with: model)
-        } else {
-            
+        } else if viewModel.isFiltered == true {
             let model = self.viewModel.filteredModel?[indexPath.row]
             cell.configureCell(with: model)
-           
+            
         }
-        
         cell.selectionStyle = .none
         return cell
     }
+    
     // MARK: - Pagination
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let height = scrollView.contentSize.height
-        
         if offsetY > height - scrollView.frame.height {
             loadNextPage()
         }
@@ -160,31 +157,14 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
     }
 }
 
+// MARK: - UIsearchBar settings
 extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        self.viewModel.zeroFiltered()
-        
-        if searchText.count >= 1 {
-            self.viewModel.isFiltered = true
-            self.viewModel.getFiltered(phrase: searchText.lowercased())
-         bindViewModel()
-           
-        } else {
-            self.viewModel.isFiltered = false
-            bindViewModel()
-        }
+        guard let text = searchController.searchBar.text else { return }
+        searchPublisher.send(text)
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.viewModel.zeroFiltered()
-        self.viewModel.isFiltered = false
-        bindViewModel()
-        
+        viewModel.isFiltered = false
+        self.table.reloadData()
     }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.bindViewModel()
-    }
-   
-
 }

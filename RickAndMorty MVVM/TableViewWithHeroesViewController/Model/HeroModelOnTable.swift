@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct HeroModelOnTable: HeroModelOnTableProtocol {
     
     var description: String
@@ -30,6 +29,7 @@ struct HeroModelOnTable: HeroModelOnTableProtocol {
     
     var location: Location
     
+    // MARK: - Init from CharacterResult
     init(data: CharacterResult) {
         self.name = data.name ?? ""
         self.image = data.image ?? ""

@@ -6,67 +6,52 @@
 //
 
 import Foundation
+import Combine
 
 class NetworkManager: NetworkServiceProtocol {
     static func baseURL() -> String {
         "https://rickandmortyapi.com/api/"
     }
     
-    
-    func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void) {
-        
+    func loadAllHeroes(page: Int) -> AnyPublisher<NetworkHeroesDataModel, Error> {
         var urlComonents = URLComponents(string: NetworkManager.baseURL() + FetchedData.allCharacters.rawValue)
         let queryItems = [URLQueryItem(name: "page", value: "\(page)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
         
-        guard var url = completedURL else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(error?.localizedDescription as! Error))
-                return
-            }
-            do {
-                let jsonData = try JSONDecoder().decode(NetworkHeroesDataModel.self, from: data)
-                completion(.success(jsonData))
-            } catch {
-                completion(.failure(error.localizedDescription as! Error))
-            }
+        guard var url = completedURL else { return
+            Fail(error: NSError(domain: "Error", code: 0)
+            )
+            .eraseToAnyPublisher()
         }
-        
-        task.resume()
-        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: NetworkHeroesDataModel.self, decoder: JSONDecoder())
+            .mapError{$0 as Error}
+            .eraseToAnyPublisher()
     }
     
-    
-    func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void) {
-        
+    func loadFilteredHeroes(page: Int, phrase: String) -> AnyPublisher<NetworkHeroesDataModel, Error> {
         var urlComonents = URLComponents(string: NetworkManager.baseURL() + FetchedData.allCharacters.rawValue)
         let queryItems = [URLQueryItem(name: "page", value: "\(page)"), URLQueryItem(name: "name", value: "\(phrase)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
         
-        guard var url = completedURL else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(error?.localizedDescription as! Error))
-                return
-            }
-            do {
-                let jsonData = try JSONDecoder().decode(NetworkHeroesDataModel.self, from: data)
-                completion(.success(jsonData))
-            } catch {
-                completion(.failure(error.localizedDescription as! Error))
-            }
+        guard var url = completedURL else { return
+            Fail(error: NSError(domain: "Error", code: 0))
+            .eraseToAnyPublisher()
         }
         
-        task.resume()
-        
+        guard var url = completedURL else { return
+            Fail(error: NSError(domain: "Error", code: 0))
+            .eraseToAnyPublisher()
+        }
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: NetworkHeroesDataModel.self, decoder: JSONDecoder())
+            .mapError{$0 as Error}
+            .eraseToAnyPublisher()
     }
-    
-    
 }
 
 
