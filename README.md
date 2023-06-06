@@ -5,4 +5,4 @@
   <img src="https://user-images.githubusercontent.com/108129792/241874864-4e3c3546-e11e-48e8-af53-c9178476dd9b.png" width="250" alt="accessibility text">
 </p>
 
-1. Вторая ветка на Combine, осталось передачу данных на экран с детальной информацией.
+
