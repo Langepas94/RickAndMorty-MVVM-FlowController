@@ -13,26 +13,18 @@
 		4410AE9A2A1B841B00B0D16B /* RickAndMorty_MVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AE992A1B841B00B0D16B /* RickAndMorty_MVVMTests.swift */; };
 		4410AEA42A1B841B00B0D16B /* RickAndMorty_MVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEA32A1B841B00B0D16B /* RickAndMorty_MVVMUITests.swift */; };
 		4410AEA62A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEA52A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift */; };
-		4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEB52A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift */; };
 		4410AEB82A1B88E700B0D16B /* HeroModelOnTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEB72A1B88E700B0D16B /* HeroModelOnTable.swift */; };
 		4410AEBB2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEBA2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift */; };
-		4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */; };
 		4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */; };
 		4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC32A1B994500B0D16B /* FlowController.swift */; };
 		4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */; };
 		4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4410AECB2A1BEB2300B0D16B /* Kingfisher */; };
 		4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */; };
-		4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */; };
 		4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */; };
-		4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */; };
-		444A63022A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */; };
 		444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63042A29BF9600FF922B /* NetworkManager.swift */; };
 		444A630B2A29E9A800FF922B /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A630A2A29E9A800FF922B /* SearchEmptyView.swift */; };
-		44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */; };
 		44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992002A248BD9005AD635 /* DetailHeroModel.swift */; };
-		44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */; };
 		44B992052A248F4F005AD635 /* DetailHeroVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */; };
-		44B992072A24954D005AD635 /* DetailInfoViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */; };
 		44B9920D2A24B995005AD635 /* DetailInfoViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,25 +56,17 @@
 		4410AE9F2A1B841B00B0D16B /* RickAndMorty MVVMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RickAndMorty MVVMUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410AEA32A1B841B00B0D16B /* RickAndMorty_MVVMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty_MVVMUITests.swift; sourceTree = "<group>"; };
 		4410AEA52A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty_MVVMUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		4410AEB52A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModelOnTableProtocol.swift; sourceTree = "<group>"; };
 		4410AEB72A1B88E700B0D16B /* HeroModelOnTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModelOnTable.swift; sourceTree = "<group>"; };
 		4410AEBA2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroOnMainTableViewModel.swift; sourceTree = "<group>"; };
-		4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroOnMainTableViewModelProtocol.swift; sourceTree = "<group>"; };
 		4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		4410AEC32A1B994500B0D16B /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHeroesDataModel.swift; sourceTree = "<group>"; };
 		4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
-		4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowControllerProtocol.swift; sourceTree = "<group>"; };
 		4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCell.swift; sourceTree = "<group>"; };
-		4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCellProtocol.swift; sourceTree = "<group>"; };
-		444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableWithHeroesViewControllerProtocol.swift; sourceTree = "<group>"; };
 		444A63042A29BF9600FF922B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		444A630A2A29E9A800FF922B /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
-		44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModelProtocol.swift; sourceTree = "<group>"; };
 		44B992002A248BD9005AD635 /* DetailHeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModel.swift; sourceTree = "<group>"; };
-		44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroViewModelProtocol.swift; sourceTree = "<group>"; };
 		44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroVIewModel.swift; sourceTree = "<group>"; };
-		44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewControllerProtocol.swift; sourceTree = "<group>"; };
 		44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailInfoViewController + extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,7 +170,6 @@
 		4410AEB42A1B885500B0D16B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4410AEB52A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift */,
 				4410AEB72A1B88E700B0D16B /* HeroModelOnTable.swift */,
 			);
 			path = Model;
@@ -196,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AEBA2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift */,
-				4410AEBC2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -224,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AEC32A1B994500B0D16B /* FlowController.swift */,
-				4410AED02A1CE2D000B0D16B /* FlowControllerProtocol.swift */,
 			);
 			path = FlowController;
 			sourceTree = "<group>";
@@ -258,7 +239,6 @@
 		4410AED32A1CE5A200B0D16B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				44B992022A248EF5005AD635 /* DetailHeroViewModelProtocol.swift */,
 				44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */,
 			);
 			path = ViewModel;
@@ -267,7 +247,6 @@
 		4410AED42A1CE5A900B0D16B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				44B991FE2A248ACF005AD635 /* DetailHeroModelProtocol.swift */,
 				44B992002A248BD9005AD635 /* DetailHeroModel.swift */,
 			);
 			path = Model;
@@ -277,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
-				444A63012A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -286,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */,
-				4410AED92A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift */,
 			);
 			path = MainTableHeroesCell;
 			sourceTree = "<group>";
@@ -303,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */,
-				44B992062A24954D005AD635 /* DetailInfoViewControllerProtocol.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -459,16 +435,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4410AEDA2A1D0D5200B0D16B /* MainTableHeroesCellProtocol.swift in Sources */,
 				44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */,
-				44B992072A24954D005AD635 /* DetailInfoViewControllerProtocol.swift in Sources */,
 				444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */,
-				44B992032A248EF5005AD635 /* DetailHeroViewModelProtocol.swift in Sources */,
-				44B991FF2A248ACF005AD635 /* DetailHeroModelProtocol.swift in Sources */,
-				4410AED12A1CE2D000B0D16B /* FlowControllerProtocol.swift in Sources */,
-				444A63022A29BCF700FF922B /* MainTableWithHeroesViewControllerProtocol.swift in Sources */,
-				4410AEB62A1B88DF00B0D16B /* HeroModelOnTableProtocol.swift in Sources */,
-				4410AEBD2A1B8C1A00B0D16B /* HeroOnMainTableViewModelProtocol.swift in Sources */,
 				4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */,
 				4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */,
 				4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */,
@@ -567,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -621,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -645,7 +613,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -673,7 +641,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

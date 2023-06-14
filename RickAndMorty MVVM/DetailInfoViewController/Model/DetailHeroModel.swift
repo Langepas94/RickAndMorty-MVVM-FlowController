@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailHeroModel: DetailHeroModelProtocol {
+struct DetailHeroModel {
     
     var name: String
     

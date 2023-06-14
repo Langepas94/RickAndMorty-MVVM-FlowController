@@ -99,7 +99,7 @@ class DetailInfoViewController: UIViewController {
         return stack
     }()
     
-    var viewModel: DetailHeroViewModelProtocol
+    var viewModel: DetailHeroViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +114,7 @@ class DetailInfoViewController: UIViewController {
         title = heroName.text
     }
     
-    init(viewModel: DetailHeroViewModelProtocol) {
+    init(viewModel: DetailHeroViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -124,8 +124,6 @@ class DetailInfoViewController: UIViewController {
     }
     
 }
-
-extension DetailInfoViewController: DetailInfoViewControllerProtocol {}
 
 extension DetailInfoViewController {
     // MARK: - Setup UI

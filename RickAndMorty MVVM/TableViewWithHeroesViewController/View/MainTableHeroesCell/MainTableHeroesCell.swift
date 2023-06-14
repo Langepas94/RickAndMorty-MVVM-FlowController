@@ -39,11 +39,11 @@ final class MainTableHeroesCell: UITableViewCell {
     }
 }
 
-extension MainTableHeroesCell: MainTableHeroesCellProtocol {
+extension MainTableHeroesCell {
     
     static var id: String  = "WeatherCellId"
     
-    func configureCell(with data: HeroModelOnTableProtocol?) {
+    func configureCell(with data: HeroModelOnTable?) {
         setupUI()
         name.text = data?.name
         image.kf.setImage(with: URL(string: data?.image ?? ""))

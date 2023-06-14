@@ -8,14 +8,16 @@
 import Foundation
 import UIKit
 
-final class FlowController: FlowControllerProtocol {
+final class FlowController {
     
     var navigationController: UINavigationController
-    var viewModel: HeroOnMainTableViewModelProtocol  = HeroOnMainTableViewModel()
-    var detailViewModel: DetailHeroViewModelProtocol = DetailHeroViewModel()
+    
+    var viewModel = HeroOnMainTableViewModel(service: NetworkManager())
+    var detailViewModel = DetailHeroViewModel()
     
     func goToMainScreen() {
-        let mainView = MainTableWithHeroesViewController(viewModel: viewModel)
+        let mainView = MainTableWithHeroesViewController()
+        mainView.viewModel  = viewModel
         viewModel.flowController = self
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(mainView, animated: false)
@@ -32,7 +34,7 @@ final class FlowController: FlowControllerProtocol {
         
         viewModel.passData = {  model in
             self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
-            
+
             self.navigationController.pushViewController(detailView, animated: true)
         }
     }

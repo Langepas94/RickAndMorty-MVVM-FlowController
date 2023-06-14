@@ -8,7 +8,11 @@
 import Foundation
 
 
-struct HeroModelOnTable: HeroModelOnTableProtocol {
+struct HeroModelOnTable: Equatable {
+    static func == (lhs: HeroModelOnTable, rhs: HeroModelOnTable) -> Bool {
+        lhs.description == rhs.description && lhs.name == rhs.name && lhs.image == rhs.image
+    }
+    
     
     var description: String
     
@@ -41,9 +45,8 @@ struct HeroModelOnTable: HeroModelOnTableProtocol {
         self.location = data.location ?? Location(name: "", url: "")
         self.description = "\(species) - \(status)"
     }
-    
 
-    internal init(image: String, name: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location, description: String) {
+    init(image: String, name: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location, description: String) {
         self.image = image
         self.name = name
         self.status = status

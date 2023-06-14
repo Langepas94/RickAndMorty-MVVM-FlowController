@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class MainTableWithHeroesViewController: UIViewController  {
   
@@ -25,7 +26,15 @@ class MainTableWithHeroesViewController: UIViewController  {
     
     let searchController = UISearchController(searchResultsController: nil)
 
-    var viewModel: HeroOnMainTableViewModelProtocol
+    public var viewModel: HeroOnMainTableViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            bind(viewModel: viewModel)
+            
+        }
+    }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,65 +46,40 @@ class MainTableWithHeroesViewController: UIViewController  {
         
         navigationItem.searchController = searchController
         
-        bindViewModel()
+    }
+    
+    private func bind(viewModel: HeroOnMainTableViewModel) {
         
+        viewModel.$state.removeDuplicates()
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] state in
+                        self?.render(state: state)
+                    }.store(in: &cancellables)
+        viewModel.send(event: .onAppear)
     }
     
-    init(viewModel: HeroOnMainTableViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    // MARK: - Binding ViewModel
-    func bindViewModel() {
-    
-        if self.viewModel.isFiltered == false {
-//            errorView.isHidden = true
-            table.reloadData()
-            self.viewModel.bindClosure = { [weak self] success in
-                guard let self = self else { return }
-                if success {
-                    DispatchQueue.main.async {
-                        
-                        self.table.reloadData()
-                    }
-                }
-            }
-        } else {
+    private func render(state: HeroOnMainTableViewModel.State) {
+        switch state {
             
-            self.viewModel.bindClosureFiltered = { [weak self] success in
-                guard let self = self else { return }
-               
-                if success {
-                    DispatchQueue.main.async {
-                        if self.viewModel.filteredModel?.count == 0 {
-                            self.errorView.isHidden = false
-                        } else {
-                            self.errorView.isHidden = true
-                        }
-                        self.table.reloadData()
-                       
-                    }
-                }
-            }
-        }
-    }
-    
-    func loadNextPage() {
-        viewModel.nextPage()
-        
-        if !(viewModel.pagesIsCancel ) {
+        case .idle:
+            break
+        case .loading:
+            self.table.reloadData()
+        case .loaded:
+            self.table.reloadData()
+        case .error:
+            errorView.isHidden = false
+            self.table.reloadData()
+            
+        case .isFiltered:
+            errorView.isHidden = true
             table.reloadData()
         }
     }
 }
 
 extension MainTableWithHeroesViewController {
+    
     // MARK: - Setup ui
     func setupUI() {
        
@@ -107,36 +91,25 @@ extension MainTableWithHeroesViewController {
     }
 }
 
-extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerProtocol {
+extension MainTableWithHeroesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if viewModel.isFiltered == false {
-            errorView.isHidden = true
-            return viewModel.model?.count ?? 0
-            
-        } else {
-            
-          
-           
-            return viewModel.filteredModel?.count ?? 0
-        }
-        
-        
+//        if viewModel?.isFiltered == false {
+//            errorView.isHidden = true
+//            return viewModel?.model?.count ?? 0
+//
+//        } else {
+//
+//            return viewModel?.filteredModel?.count ?? 0
+//        }
+        return viewModel?.getModel().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: MainTableHeroesCell.id, for: indexPath) as! MainTableHeroesCell
        
-        
-        if viewModel.isFiltered == false {
-            let model = self.viewModel.model?[indexPath.row]
-            cell.configureCell(with: model)
-        } else {
-            
-            let model = self.viewModel.filteredModel?[indexPath.row]
-            cell.configureCell(with: model)
-           
-        }
+       let modelForCell =  viewModel?.getModel()[indexPath.row]
+        cell.configureCell(with: modelForCell)
         
         cell.selectionStyle = .none
         return cell
@@ -147,12 +120,12 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
         let height = scrollView.contentSize.height
         
         if offsetY > height - scrollView.frame.height {
-            loadNextPage()
+            self.viewModel?.send(event: .onPageScroll)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.goToDetailScreen(index: indexPath.item)
+        viewModel?.goToDetailScreen(index: indexPath.item)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -163,28 +136,14 @@ extension MainTableWithHeroesViewController: MainTableWithHeroesViewControllerPr
 extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        self.viewModel.zeroFiltered()
+        guard let viewModel = viewModel else { return }
         
-        if searchText.count >= 1 {
-            self.viewModel.isFiltered = true
-            self.viewModel.getFiltered(phrase: searchText.lowercased())
-         bindViewModel()
-           
-        } else {
-            self.viewModel.isFiltered = false
-            bindViewModel()
-        }
+        self.viewModel?.send(event: .onFiltered(searchText))
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.viewModel.zeroFiltered()
-        self.viewModel.isFiltered = false
-        bindViewModel()
+        self.viewModel?.send(event: .onDefaultState)
         
     }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.bindViewModel()
-    }
-   
 
 }

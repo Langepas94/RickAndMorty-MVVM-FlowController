@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class DetailHeroViewModel: DetailHeroViewModelProtocol {
+final class DetailHeroViewModel {
     
     var model: DetailHeroModel?
     
-    func configureData(_ controller: DetailInfoViewControllerProtocol) {
+    func configureData(_ controller: DetailInfoViewController) {
         controller.heroName.text = model?.name
         controller.heroImage.kf.setImage(with: URL(string: model?.image ?? ""))
         controller.status.text = model?.status.lowercased()
