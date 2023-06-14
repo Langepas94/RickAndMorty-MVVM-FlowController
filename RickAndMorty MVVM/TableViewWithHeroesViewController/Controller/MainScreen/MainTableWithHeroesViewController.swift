@@ -10,7 +10,7 @@ import Combine
 
 class MainTableWithHeroesViewController: UIViewController  {
   
-    private var table: UITableView = {
+    private lazy var table: UITableView = {
         let table = UITableView()
         table.register(MainTableHeroesCell.self, forCellReuseIdentifier: MainTableHeroesCell.id)
         table.frame = UIScreen.main.bounds
@@ -116,10 +116,7 @@ extension MainTableWithHeroesViewController: UITableViewDelegate, UITableViewDat
         let height = scrollView.contentSize.height
         
         if offsetY > height - scrollView.frame.height {
-//            self.viewModel?.send(event: .onPageScroll)
-            print(offsetY)
-            print(height - scrollView.frame.height)
-//            print(scrollView.frame.height)
+            self.viewModel?.send(event: .onPageScroll)
         }
     }
     

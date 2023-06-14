@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum NetworkErrors: Error {
+    case notNetworkAvailable
+}
+
 class NetworkManager: NetworkServiceProtocol {
     static func baseURL() -> String {
         "https://rickandmortyapi.com/api/"
@@ -24,7 +28,7 @@ class NetworkManager: NetworkServiceProtocol {
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
-                completion(.failure(error?.localizedDescription as! Error))
+                completion(.failure(NetworkErrors.notNetworkAvailable))
                 return
             }
             do {

@@ -111,7 +111,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
               
             case .failure(let error):
                 self.handleResponse(success: false)
-                print(error)
+                self.state = .error
             }
         }
     }
@@ -150,12 +150,13 @@ final class HeroOnMainTableViewModel: ObservableObject {
     
     func nextPage() {
         
-        print("Hello")
         if isFiltered == false {
             if currentPage < maximumPage ?? 0 {
                 currentPage += 1
                 
                     fetchData()
+                
+                self.state = .loading
                 
             } else if currentPage == maximumPage {
                 pagesIsCancel = true
