@@ -10,7 +10,7 @@ import Combine
 
 class MainTableWithHeroesViewController: UIViewController  {
   
-    var table: UITableView = {
+    private var table: UITableView = {
         let table = UITableView()
         table.register(MainTableHeroesCell.self, forCellReuseIdentifier: MainTableHeroesCell.id)
         table.frame = UIScreen.main.bounds
@@ -78,9 +78,10 @@ class MainTableWithHeroesViewController: UIViewController  {
     }
 }
 
+// MARK: - Setup ui
+
 extension MainTableWithHeroesViewController {
     
-    // MARK: - Setup ui
     func setupUI() {
        
         searchController.searchBar.delegate = self
@@ -91,17 +92,11 @@ extension MainTableWithHeroesViewController {
     }
 }
 
+// MARK: - Table settings
+
 extension MainTableWithHeroesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        if viewModel?.isFiltered == false {
-//            errorView.isHidden = true
-//            return viewModel?.model?.count ?? 0
-//
-//        } else {
-//
-//            return viewModel?.filteredModel?.count ?? 0
-//        }
         return viewModel?.getModel().count ?? 0
     }
     
@@ -110,17 +105,21 @@ extension MainTableWithHeroesViewController: UITableViewDelegate, UITableViewDat
        
        let modelForCell =  viewModel?.getModel()[indexPath.row]
         cell.configureCell(with: modelForCell)
-        
+
         cell.selectionStyle = .none
         return cell
     }
-    // MARK: - Pagination
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+       
         let offsetY = scrollView.contentOffset.y
         let height = scrollView.contentSize.height
         
         if offsetY > height - scrollView.frame.height {
-            self.viewModel?.send(event: .onPageScroll)
+//            self.viewModel?.send(event: .onPageScroll)
+            print(offsetY)
+            print(height - scrollView.frame.height)
+//            print(scrollView.frame.height)
         }
     }
     
@@ -132,6 +131,8 @@ extension MainTableWithHeroesViewController: UITableViewDelegate, UITableViewDat
         100
     }
 }
+
+// MARK: - Searchbar settings
 
 extension MainTableWithHeroesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

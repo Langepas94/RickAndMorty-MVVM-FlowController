@@ -10,7 +10,7 @@ import UIKit
 
 class DetailInfoViewController: UIViewController {
     
-    var heroName: UILabel = {
+    lazy var heroName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 28, weight: .bold)
@@ -19,7 +19,7 @@ class DetailInfoViewController: UIViewController {
         return label
     }()
     
-    var status: UILabel = {
+    lazy var status: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -27,7 +27,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var species: UILabel = {
+    lazy var species: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -35,7 +35,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var type: UILabel = {
+    lazy var type: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -43,7 +43,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var gender: UILabel = {
+    lazy var gender: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -51,7 +51,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var origin: UILabel = {
+    lazy var origin: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -59,7 +59,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var location: UILabel = {
+    lazy var location: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -68,7 +68,7 @@ class DetailInfoViewController: UIViewController {
         return label
     }()
     
-    var heroImage: UIImageView = {
+    lazy var heroImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 20
@@ -76,7 +76,7 @@ class DetailInfoViewController: UIViewController {
         return imageView
     }()
     
-    var mainStackViewWithIncludedStacks: UIStackView = {
+    lazy var mainStackViewWithIncludedStacks: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -84,14 +84,14 @@ class DetailInfoViewController: UIViewController {
         return stack
     }()
     
-    var heroDescriptionStackView: UIStackView = {
+    lazy var heroDescriptionStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .equalCentering
         return stack
     }()
-    var staticStackView: UIStackView = {
+    lazy var staticStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical

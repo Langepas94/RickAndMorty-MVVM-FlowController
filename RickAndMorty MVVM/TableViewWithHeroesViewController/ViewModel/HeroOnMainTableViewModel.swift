@@ -10,7 +10,6 @@ import Combine
 
 final class HeroOnMainTableViewModel: ObservableObject {
     
-    // из модели на экран
     enum State: Equatable {
         case idle
         case loading
@@ -19,7 +18,6 @@ final class HeroOnMainTableViewModel: ObservableObject {
         case isFiltered([HeroModelOnTable])
     }
     
-    // из экрана на модель
     enum Event {
         case onAppear
         case onFiltered(String?)
@@ -29,26 +27,18 @@ final class HeroOnMainTableViewModel: ObservableObject {
     
     var bindClosureFiltered: ((Bool) -> Void)?
     
-    var maximumPage: Int?
-    
-    var pagesIsCancel: Bool = false
-    
-    var currentPage: Int = 1
-    var filterCurrentPage: Int = 1
-    
-//    let network = NetworkManager()
-    
-    var model: [HeroModelOnTable]? = [HeroModelOnTable]()
-    
-    var filteredModel: [HeroModelOnTable]? = [HeroModelOnTable]()
-    
-    var bindClosure: ((Bool) -> Void)?
-     
+    private var maximumPage: Int?
+    private var pagesIsCancel: Bool = false
+    private var currentPage: Int = 1
+    private var filterCurrentPage: Int = 1
+    private var model: [HeroModelOnTable]? = [HeroModelOnTable]()
+    private var filteredModel: [HeroModelOnTable]? = [HeroModelOnTable]()
+    private var bindClosure: ((Bool) -> Void)?
     var passData: ((HeroModelOnTable) -> Void)?
     
     weak var flowController: FlowController?
     
-    var isFiltered: Bool = false
+    private var isFiltered: Bool = false
     
     // MARK: - Private properties
     
@@ -72,7 +62,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
         case .onAppear:
             fetchData()
             
-            self.state = .loading
+//            self.state = .loading
         case .onFiltered(let text):
             zeroFiltered()
             guard let text = text else { return }
@@ -98,16 +88,9 @@ final class HeroOnMainTableViewModel: ObservableObject {
             self.state = .loaded
         }
     }
-    
-    func getModel() -> [HeroModelOnTable] {
-        if isFiltered == false {
-            return self.model ?? [HeroModelOnTable]()
-        } else {
-            return self.filteredModel ?? [HeroModelOnTable]()
-        }
-    }
-    
+
     // MARK: - Fetch data
+    
     private func fetchData() {
         
         self.service.getAllCharacters(page: currentPage) { [weak self] result in
@@ -133,7 +116,41 @@ final class HeroOnMainTableViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Fetch Filtered Data
+    
+    func getFiltered(phrase: String) {
+        self.service.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
+            result in
+            guard let self = self else { return }
+            switch result {
+                
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let charData = data?.results
+                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
+                    self.maximumPage = data?.info?.pages
+                    
+                    self.filteredModel?.append(contentsOf: heroModels ?? [])
+                    
+                    if self.filteredModel != [] {
+                        self.state = .isFiltered(heroModels ?? [])
+                    } else {
+                        self.state = .error
+                    }
+                    self.handleResponse(success: true)
+                   
+                    
+                }
+            case .failure(let error): break
+            }
+        }
+    }
+    
+    // MARK: - Pagination settings
+    
     func nextPage() {
+        
+        print("Hello")
         if isFiltered == false {
             if currentPage < maximumPage ?? 0 {
                 currentPage += 1
@@ -165,6 +182,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
         }
     }
     
+    // MARK: - on Detail screen 
     func goToDetailScreen(index: Int) {
 
         flowController?.goToDetailScreen()
@@ -176,38 +194,19 @@ final class HeroOnMainTableViewModel: ObservableObject {
             passData?(returnedModel)
         }
     }
-    // MARK: - Fetch Filtered Data
-    func getFiltered(phrase: String) {
-        self.service.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
-            result in
-            guard let self = self else { return }
-            switch result {
-                
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let charData = data?.results
-                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self.maximumPage = data?.info?.pages
-                    
-                    self.filteredModel?.append(contentsOf: heroModels ?? [])
-                    
-                    if self.filteredModel != [] {
-                        self.state = .isFiltered(heroModels ?? [])
-                    } else {
-                        self.state = .error
-                    }
-                    self.handleResponse(success: true)
-                   
-                    
-                }
-            case .failure(let error): break
-            }
-        }
-    }
+ 
     
-    func zeroFiltered() {
+    private func zeroFiltered() {
         self.filteredModel?.removeAll()
     }
     
+    
+    func getModel() -> [HeroModelOnTable] {
+        if isFiltered == false {
+            return self.model ?? [HeroModelOnTable]()
+        } else {
+            return self.filteredModel ?? [HeroModelOnTable]()
+        }
+    }
     
 }

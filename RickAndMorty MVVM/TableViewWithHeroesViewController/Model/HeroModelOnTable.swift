@@ -10,9 +10,8 @@ import Foundation
 
 struct HeroModelOnTable: Equatable {
     static func == (lhs: HeroModelOnTable, rhs: HeroModelOnTable) -> Bool {
-        lhs.description == rhs.description && lhs.name == rhs.name && lhs.image == rhs.image
+        lhs.description == rhs.description && lhs.name == rhs.name && lhs.image == rhs.image && lhs.status == rhs.status && lhs.species == rhs.species && lhs.type == rhs.type && lhs.gender == rhs.gender && lhs.origin == rhs.origin && lhs.location == rhs.location
     }
-    
     
     var description: String
     
