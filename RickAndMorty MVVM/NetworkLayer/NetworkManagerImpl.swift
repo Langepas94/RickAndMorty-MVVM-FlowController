@@ -23,9 +23,9 @@ class NetworkManagerImpl: HeroNetworkService {
         let queryItems = [URLQueryItem(name: "page", value: "\(page)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
-        guard var url = completedURL else { return }
+        guard let url = completedURL else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 completion(.failure(NetworkErrors.notNetworkAvailable))
                 return
@@ -47,7 +47,7 @@ class NetworkManagerImpl: HeroNetworkService {
         let queryItems = [URLQueryItem(name: "page", value: "\(page)"), URLQueryItem(name: "name", value: "\(phrase)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
-        guard var url = completedURL else { return }
+        guard let url = completedURL else { return }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 completion(.failure(error?.localizedDescription as! Error))

@@ -11,7 +11,7 @@ import Combine
 
 class DetailInfoViewController: UIViewController {
     
-    // MARK: - Private properties
+    // MARK: - UI
     
     private lazy var heroName: UILabel = {
         let label = UILabel()
@@ -113,6 +113,8 @@ class DetailInfoViewController: UIViewController {
         }
     }
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
@@ -136,22 +138,26 @@ class DetailInfoViewController: UIViewController {
     
     private func render(state: DetailHeroViewModel.State) {
         switch state {
-        case .idle:
-            break
         case .loadScreen:
-            configure(from: (viewModel?.model)!)
+            
+            configure(from: viewModel?.model ?? DetailHeroModel())
+            
         }
     }
     
     private func configure(from model: DetailHeroModel) {
+
         self.heroName.text = model.name
-        self.heroImage.kf.setImage(with: URL(string: model.image ?? ""))
+        
+        self.title = model.name
+        
+        self.heroImage.kf.setImage(with: URL(string: model.image))
         self.status.text = model.status.lowercased()
         self.species.text = model.species.lowercased()
         self.gender.text = model.gender.lowercased()
         self.origin.text = model.origin.name?.lowercased()
         self.location.text = model.location.name?.lowercased()
-        self.title = self.heroName.text
+        
     
         if model.type == "" {
             self.type.text = "unknown"
@@ -159,7 +165,6 @@ class DetailInfoViewController: UIViewController {
             self.type.text = model.type.lowercased()
         }
     }
-    
 }
 
 // MARK: - Setup UI

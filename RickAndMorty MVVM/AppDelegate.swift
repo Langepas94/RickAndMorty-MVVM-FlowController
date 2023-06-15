@@ -23,14 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupFlowController() {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController()
         
-        flowController = FlowController(navigationController: navigationController)
+        flowController = FlowController()
         
-        window?.rootViewController = navigationController
+        window?.rootViewController = flowController
         window?.makeKeyAndVisible()
     }
-    
-
 }
 

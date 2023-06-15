@@ -8,25 +8,26 @@
 import Foundation
 import UIKit
 
-final class FlowController {
+final class FlowController: UINavigationController {
+   
     // MARK: - Private properties
-    private var navigationController: UINavigationController
+    
     private var viewModel = HeroOnMainTableViewModel(service: NetworkManagerImpl())
-    private var detailViewModel = DetailHeroViewModel()
     
     // MARK: - Public methods
     
-    func goToDetailScreen() {
+    func goToDetailScreen(_ model: DetailHeroViewModel? = nil) {
         let detailView = DetailInfoViewController()
+        let detailViewModel = DetailHeroViewModel()
         detailView.viewModel = detailViewModel
-        let backButton = UIBarButtonItem(title: self.navigationController.title, style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: self.title, style: .plain, target: nil, action: nil)
         backButton.tintColor = .black
-        self.navigationController.navigationBar.topItem?.backBarButtonItem = backButton
+        self.navigationBar.topItem?.backBarButtonItem = backButton
+        
         viewModel.passData = {  model in
-            self.detailViewModel.model = .init(data: model)
-
-            self.navigationController.pushViewController(detailView, animated: true)
+            detailViewModel.model = .init(data: model)
         }
+        self.pushViewController(detailView, animated: true)
     }
     
     // MARK: - Private methods
@@ -35,14 +36,19 @@ final class FlowController {
         let mainView = MainTableWithHeroesViewController()
         mainView.viewModel  = viewModel
         viewModel.flowController = self
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.pushViewController(mainView, animated: false)
+        self.navigationBar.prefersLargeTitles = true
+        self.pushViewController(mainView, animated: false)
     }
     
     // MARK: - Init
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(viewModel: HeroOnMainTableViewModel = HeroOnMainTableViewModel(service: NetworkManagerImpl())) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
         goToMainScreen()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+ 
 }

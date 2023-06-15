@@ -9,18 +9,7 @@ import UIKit
 import Combine
 
 class MainTableWithHeroesViewController: UIViewController  {
-    
-    // MARK: - Public properties
-    
-    let searchController = UISearchController(searchResultsController: nil)
-    
-    public var viewModel: HeroOnMainTableViewModel? {
-        didSet {
-            guard let viewModel = viewModel else { return }
-            bind(viewModel: viewModel)
-        }
-    }
-  
+
     // MARK: - Private properties
     
     private lazy var table: UITableView = {
@@ -39,10 +28,22 @@ class MainTableWithHeroesViewController: UIViewController  {
     
     private var cancellables = Set<AnyCancellable>()
     
+    // MARK: - Public properties
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    public var viewModel: HeroOnMainTableViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            bind(viewModel: viewModel)
+        }
+    }
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.dataSource = self
-        table.delegate = self
+        initialSetup()
         setupUI()
         navigationItem.searchController = searchController
     }
@@ -50,7 +51,6 @@ class MainTableWithHeroesViewController: UIViewController  {
     // MARK: - Private methods
     
     private func bind(viewModel: HeroOnMainTableViewModel) {
-        
         viewModel.$state.removeDuplicates()
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] state in
@@ -74,6 +74,11 @@ class MainTableWithHeroesViewController: UIViewController  {
             errorView.isHidden = true
             table.reloadData()
         }
+    }
+    
+    private func initialSetup() {
+        table.dataSource = self
+        table.delegate = self
     }
 }
 

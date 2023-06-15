@@ -8,12 +8,11 @@
 import Foundation
 import Combine
 
-final class DetailHeroViewModel {
+final class DetailHeroViewModel: ObservableObject {
     
     // MARK: - Public properties
     
     enum State: Equatable {
-        case idle
         case loadScreen
     }
     
@@ -23,7 +22,9 @@ final class DetailHeroViewModel {
     
     var model: DetailHeroModel?
     
-    @Published private(set) var state: State = .idle
+    // MARK: - Private properties
+    
+    @Published private(set) var state: State = .loadScreen
     
     // MARK: - Public methods
     

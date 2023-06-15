@@ -165,6 +165,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
     }
     
     // MARK: - on Detail screen
+    
     private func goToDetailScreen(index: Int) {
         flowController?.goToDetailScreen()
         if isFiltered {

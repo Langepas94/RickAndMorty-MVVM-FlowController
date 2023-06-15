@@ -44,4 +44,15 @@ struct DetailHeroModel {
         self.location = data.location
     }
     
+    init() {
+        self.name = "Unknown"
+        self.image = "Unknown"
+        self.status = "Unknown"
+        self.species = "Unknown"
+        self.type = "Unknown"
+        self.gender = "Unknown"
+        self.origin = Location(name: "", url: "")
+        self.location = Location(name: "", url: "")
+    }
+    
 }
