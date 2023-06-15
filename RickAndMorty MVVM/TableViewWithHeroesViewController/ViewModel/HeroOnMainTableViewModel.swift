@@ -41,7 +41,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
     private var filteredModel: [HeroModelOnTable]? = [HeroModelOnTable]()
     private var bindClosure: ((Bool) -> Void)?
     private var isFiltered: Bool = false
-    private let service: NetworkManagerImpl
+    private let service: HeroNetworkService
     private var bindClosureFiltered: ((Bool) -> Void)?
     private var searchText = ""
     
@@ -49,7 +49,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
     
     // MARK: - Init
     
-    init(service: NetworkManagerImpl) {
+    init(service: HeroNetworkService) {
         self.service = service
     }
     
@@ -92,14 +92,14 @@ final class HeroOnMainTableViewModel: ObservableObject {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                DispatchQueue.main.async {
+                
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
                     self.maximumPage = data?.info?.pages
                     self.model?.append(contentsOf: heroModels ?? [])
-                    self.handleResponse(success: true)
                     self.state = .loaded
-                }
+                    self.handleResponse(success: true)
+                
             case .failure(_):
                 self.handleResponse(success: false)
                 self.state = .error
@@ -115,7 +115,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                DispatchQueue.main.async {
+                
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
                     self.maximumPage = data?.info?.pages
@@ -126,7 +126,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
                         self.state = .error
                     }
                     self.handleResponse(success: true)
-                }
+                
             case .failure(_): break
             }
         }

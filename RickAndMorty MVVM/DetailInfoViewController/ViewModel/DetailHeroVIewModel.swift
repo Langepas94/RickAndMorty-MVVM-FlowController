@@ -31,10 +31,8 @@ final class DetailHeroViewModel: ObservableObject {
     func send(event: Event) {
         
         switch event {
-            
         case .onAppear:
             self.state = .loadScreen
         }
     }
-
 }

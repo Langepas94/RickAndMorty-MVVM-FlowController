@@ -12,7 +12,7 @@ final class FlowController: UINavigationController {
    
     // MARK: - Private properties
     
-    private var viewModel = HeroOnMainTableViewModel(service: NetworkManagerImpl())
+    private var viewModel = HeroOnMainTableViewModel(service: NetworkServiceImpl())
     
     // MARK: - Public methods
     
@@ -41,14 +41,12 @@ final class FlowController: UINavigationController {
     }
     
     // MARK: - Init
-    init(viewModel: HeroOnMainTableViewModel = HeroOnMainTableViewModel(service: NetworkManagerImpl())) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        goToMainScreen()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    public init() {
+            super.init(nibName: nil, bundle: nil)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
  
 }
