@@ -5,6 +5,5 @@
   <img src="https://user-images.githubusercontent.com/108129792/241874864-4e3c3546-e11e-48e8-af53-c9178476dd9b.png" width="250" alt="accessibility text">
 </p>
 
-Осталось:
-
-1. Ветка Combine - такое же приложение, но реализовано с помощью Combine.
+2-ая ветка - Combine
+3-ая ветка - Combine через state и event
