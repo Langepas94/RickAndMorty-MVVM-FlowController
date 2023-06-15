@@ -9,13 +9,29 @@ import Foundation
 import UIKit
 
 final class FlowController {
+    // MARK: - Private properties
+    private var navigationController: UINavigationController
+    private var viewModel = HeroOnMainTableViewModel(service: NetworkManagerImpl())
+    private var detailViewModel = DetailHeroViewModel()
     
-    var navigationController: UINavigationController
+    // MARK: - Public methods
     
-    var viewModel = HeroOnMainTableViewModel(service: NetworkManager())
-    var detailViewModel = DetailHeroViewModel()
+    func goToDetailScreen() {
+        let detailView = DetailInfoViewController()
+        detailView.viewModel = detailViewModel
+        let backButton = UIBarButtonItem(title: self.navigationController.title, style: .plain, target: nil, action: nil)
+        backButton.tintColor = .black
+        self.navigationController.navigationBar.topItem?.backBarButtonItem = backButton
+        viewModel.passData = {  model in
+            self.detailViewModel.model = .init(data: model)
+
+            self.navigationController.pushViewController(detailView, animated: true)
+        }
+    }
     
-    func goToMainScreen() {
+    // MARK: - Private methods
+    
+    private func goToMainScreen() {
         let mainView = MainTableWithHeroesViewController()
         mainView.viewModel  = viewModel
         viewModel.flowController = self
@@ -23,27 +39,10 @@ final class FlowController {
         navigationController.pushViewController(mainView, animated: false)
     }
     
-    func goToDetailScreen() {
-        
-        let detailView = DetailInfoViewController(viewModel: detailViewModel)
-        
-        let backButton = UIBarButtonItem(title: self.navigationController.title, style: .plain, target: nil, action: nil)
-        backButton.tintColor = .black
-        
-        self.navigationController.navigationBar.topItem?.backBarButtonItem = backButton
-        
-        viewModel.passData = {  model in
-            self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
-
-            self.navigationController.pushViewController(detailView, animated: true)
-        }
-    }
+    // MARK: - Init
     
     init(navigationController: UINavigationController) {
-        
         self.navigationController = navigationController
         goToMainScreen()
-        
     }
-    
 }

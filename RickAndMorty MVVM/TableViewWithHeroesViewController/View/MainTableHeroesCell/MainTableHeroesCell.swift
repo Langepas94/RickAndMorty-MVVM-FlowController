@@ -10,6 +10,8 @@ import Kingfisher
 
 final class MainTableHeroesCell: UITableViewCell {
     
+    // MARK: - Private properties
+    
     private lazy var name: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

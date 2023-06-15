@@ -9,23 +9,20 @@ import Foundation
 
 struct DetailHeroModel {
     
+    // MARK: - Public properties
+    
     var name: String
-    
     var image: String
-    
     var status: String
-    
     var species: String
-    
-    var type: String 
-    
+    var type: String
     var gender: String
-    
     var origin: Location
-    
     var location: Location
     
-    internal init(name: String, image: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location) {
+    // MARK: - Init's
+    
+    init(name: String, image: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location) {
         self.name = name
         self.image = image
         self.status = status

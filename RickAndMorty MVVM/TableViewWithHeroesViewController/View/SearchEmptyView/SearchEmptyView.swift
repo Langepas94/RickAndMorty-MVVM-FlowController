@@ -10,6 +10,8 @@ import UIKit
 
 final class SearchEmptyView: UIView {
     
+   // MARK: - Private properties
+    
    private lazy var titleError: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +58,8 @@ final class SearchEmptyView: UIView {
         ])
     }
 
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()

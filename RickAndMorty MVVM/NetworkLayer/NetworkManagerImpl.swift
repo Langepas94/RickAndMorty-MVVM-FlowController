@@ -11,19 +11,18 @@ enum NetworkErrors: Error {
     case notNetworkAvailable
 }
 
-class NetworkManager: NetworkServiceProtocol {
+class NetworkManagerImpl: HeroNetworkService {
     static func baseURL() -> String {
         "https://rickandmortyapi.com/api/"
     }
     
+    // MARK: - Get all characters
     
     func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void) {
-        
-        var urlComonents = URLComponents(string: NetworkManager.baseURL() + FetchedData.allCharacters.rawValue)
+        var urlComonents = URLComponents(string: NetworkManagerImpl.baseURL() + FetchedData.allCharacters.rawValue)
         let queryItems = [URLQueryItem(name: "page", value: "\(page)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
-        
         guard var url = completedURL else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
@@ -38,21 +37,17 @@ class NetworkManager: NetworkServiceProtocol {
                 completion(.failure(error.localizedDescription as! Error))
             }
         }
-        
         task.resume()
-        
     }
     
+    // MARK: - Get filtered characters
     
     func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void) {
-        
-        var urlComonents = URLComponents(string: NetworkManager.baseURL() + FetchedData.allCharacters.rawValue)
+        var urlComonents = URLComponents(string: NetworkManagerImpl.baseURL() + FetchedData.allCharacters.rawValue)
         let queryItems = [URLQueryItem(name: "page", value: "\(page)"), URLQueryItem(name: "name", value: "\(phrase)")]
         urlComonents?.queryItems = queryItems
         let completedURL = urlComonents?.url
-        
         guard var url = completedURL else { return }
-        
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 completion(.failure(error?.localizedDescription as! Error))
@@ -65,12 +60,8 @@ class NetworkManager: NetworkServiceProtocol {
                 completion(.failure(error.localizedDescription as! Error))
             }
         }
-        
         task.resume()
-        
     }
-    
-    
 }
 
 

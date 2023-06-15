@@ -6,27 +6,34 @@
 //
 
 import Foundation
+import Combine
 
 final class DetailHeroViewModel {
     
-    var model: DetailHeroModel?
+    // MARK: - Public properties
     
-    func configureData(_ controller: DetailInfoViewController) {
-        controller.heroName.text = model?.name
-        controller.heroImage.kf.setImage(with: URL(string: model?.image ?? ""))
-        controller.status.text = model?.status.lowercased()
-        controller.species.text = model?.species.lowercased()
-        controller.gender.text = model?.gender.lowercased()
-        controller.origin.text = model?.origin.name?.lowercased()
-        controller.location.text = model?.location.name?.lowercased()
-        
-        if model?.type == "" {
-            controller.type.text = "unknown"
-            
-        } else {
-            controller.type.text = model?.type.lowercased()
-        }
+    enum State: Equatable {
+        case idle
+        case loadScreen
     }
     
+    enum Event {
+        case onAppear
+    }
+    
+    var model: DetailHeroModel?
+    
+    @Published private(set) var state: State = .idle
+    
+    // MARK: - Public methods
+    
+    func send(event: Event) {
+        
+        switch event {
+            
+        case .onAppear:
+            self.state = .loadScreen
+        }
+    }
 
 }

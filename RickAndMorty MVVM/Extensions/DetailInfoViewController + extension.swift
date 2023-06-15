@@ -19,7 +19,6 @@ extension DetailInfoViewController {
             label.textColor = .systemGray
             label.textAlignment = .left
             label.adjustsFontSizeToFitWidth = true
-
             returnedArray.append(label)
         }
         return returnedArray

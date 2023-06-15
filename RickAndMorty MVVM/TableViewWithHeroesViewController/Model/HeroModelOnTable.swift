@@ -8,29 +8,17 @@
 import Foundation
 
 
-struct HeroModelOnTable: Equatable {
-    static func == (lhs: HeroModelOnTable, rhs: HeroModelOnTable) -> Bool {
-        lhs.description == rhs.description && lhs.name == rhs.name && lhs.image == rhs.image && lhs.status == rhs.status && lhs.species == rhs.species && lhs.type == rhs.type && lhs.gender == rhs.gender && lhs.origin == rhs.origin && lhs.location == rhs.location
-    }
+struct HeroModelOnTable {
     
     var description: String
-    
     var setIshiddenErrorView: Bool = true
-    
     var image: String
-    
     var name: String
-    
     var status: String
-    
     var species: String
-    
     var type: String
-    
     var gender: String
-    
     var origin: Location
-    
     var location: Location
     
     init(data: CharacterResult) {
@@ -55,5 +43,11 @@ struct HeroModelOnTable: Equatable {
         self.origin = origin
         self.location = location
         self.description = description
+    }
+}
+
+extension HeroModelOnTable : Equatable {
+    static func == (lhs: HeroModelOnTable, rhs: HeroModelOnTable) -> Bool {
+        lhs.description == rhs.description && lhs.name == rhs.name && lhs.image == rhs.image && lhs.status == rhs.status && lhs.species == rhs.species && lhs.type == rhs.type && lhs.gender == rhs.gender && lhs.origin == rhs.origin && lhs.location == rhs.location
     }
 }

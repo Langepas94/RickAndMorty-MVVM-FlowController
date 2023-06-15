@@ -1,8 +1,8 @@
 //
-//  NetworkManagerProtocol.swift
+//  NetworkService.swift
 //  RickAndMorty MVVM
 //
-//  Created by Artem on 22.05.2023.
+//  Created by Artem on 14.06.2023.
 //
 
 import Foundation
@@ -13,11 +13,8 @@ enum FetchedData: String {
     case episode = "episode"
 }
 
-protocol NetworkServiceProtocol {
-    
+protocol HeroNetworkService {
     static func baseURL() -> String
-    
     func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
-    
     func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, Error>) -> Void)
 }

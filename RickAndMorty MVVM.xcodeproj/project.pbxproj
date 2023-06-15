@@ -15,13 +15,13 @@
 		4410AEA62A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEA52A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift */; };
 		4410AEB82A1B88E700B0D16B /* HeroModelOnTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEB72A1B88E700B0D16B /* HeroModelOnTable.swift */; };
 		4410AEBB2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEBA2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift */; };
-		4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */; };
 		4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC32A1B994500B0D16B /* FlowController.swift */; };
 		4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */; };
 		4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4410AECB2A1BEB2300B0D16B /* Kingfisher */; };
 		4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */; };
 		4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */; };
-		444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63042A29BF9600FF922B /* NetworkManager.swift */; };
+		4424976F2A3A024800C9AD07 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4424976E2A3A024800C9AD07 /* NetworkService.swift */; };
+		444A63052A29BF9600FF922B /* NetworkManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A63042A29BF9600FF922B /* NetworkManagerImpl.swift */; };
 		444A630B2A29E9A800FF922B /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444A630A2A29E9A800FF922B /* SearchEmptyView.swift */; };
 		44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992002A248BD9005AD635 /* DetailHeroModel.swift */; };
 		44B992052A248F4F005AD635 /* DetailHeroVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */; };
@@ -58,12 +58,12 @@
 		4410AEA52A1B841B00B0D16B /* RickAndMorty_MVVMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty_MVVMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4410AEB72A1B88E700B0D16B /* HeroModelOnTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroModelOnTable.swift; sourceTree = "<group>"; };
 		4410AEBA2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroOnMainTableViewModel.swift; sourceTree = "<group>"; };
-		4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
 		4410AEC32A1B994500B0D16B /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		4410AEC82A1BD7B200B0D16B /* NetworkHeroesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHeroesDataModel.swift; sourceTree = "<group>"; };
 		4410AECE2A1CDF0400B0D16B /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		4410AED72A1D0C1D00B0D16B /* MainTableHeroesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableHeroesCell.swift; sourceTree = "<group>"; };
-		444A63042A29BF9600FF922B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4424976E2A3A024800C9AD07 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		444A63042A29BF9600FF922B /* NetworkManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerImpl.swift; sourceTree = "<group>"; };
 		444A630A2A29E9A800FF922B /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		44B992002A248BD9005AD635 /* DetailHeroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroModel.swift; sourceTree = "<group>"; };
 		44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroVIewModel.swift; sourceTree = "<group>"; };
@@ -196,8 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				4410AEC72A1BD79F00B0D16B /* NetworkHeroesDataModel */,
-				4410AEC02A1B979C00B0D16B /* NetworkManagerProtocol.swift */,
-				444A63042A29BF9600FF922B /* NetworkManager.swift */,
+				444A63042A29BF9600FF922B /* NetworkManagerImpl.swift */,
+				4424976E2A3A024800C9AD07 /* NetworkService.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -224,16 +224,8 @@
 				444A63082A29D07200FF922B /* Controller */,
 				4410AED42A1CE5A900B0D16B /* Model */,
 				4410AED32A1CE5A200B0D16B /* ViewModel */,
-				4410AED22A1CE59A00B0D16B /* View */,
 			);
 			path = DetailInfoViewController;
-			sourceTree = "<group>";
-		};
-		4410AED22A1CE59A00B0D16B /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4410AED32A1CE5A200B0D16B /* ViewModel */ = {
@@ -252,14 +244,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4410AED52A1D0BD600B0D16B /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
-			);
-			path = MainScreen;
-			sourceTree = "<group>";
-		};
 		4410AED62A1D0BE600B0D16B /* MainTableHeroesCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +255,7 @@
 		444A63032A29BF2D00FF922B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4410AED52A1D0BD600B0D16B /* MainScreen */,
+				4410AE862A1B841A00B0D16B /* MainTableWithHeroesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -436,8 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */,
-				444A63052A29BF9600FF922B /* NetworkManager.swift in Sources */,
-				4410AEC12A1B979C00B0D16B /* NetworkManagerProtocol.swift in Sources */,
+				444A63052A29BF9600FF922B /* NetworkManagerImpl.swift in Sources */,
 				4410AEC42A1B994500B0D16B /* FlowController.swift in Sources */,
 				4410AECF2A1CDF0400B0D16B /* DetailInfoViewController.swift in Sources */,
 				4410AED82A1D0C1D00B0D16B /* MainTableHeroesCell.swift in Sources */,
@@ -445,6 +428,7 @@
 				4410AEB82A1B88E700B0D16B /* HeroModelOnTable.swift in Sources */,
 				4410AEC92A1BD7B300B0D16B /* NetworkHeroesDataModel.swift in Sources */,
 				4410AE872A1B841A00B0D16B /* MainTableWithHeroesViewController.swift in Sources */,
+				4424976F2A3A024800C9AD07 /* NetworkService.swift in Sources */,
 				4410AEBB2A1B8BF800B0D16B /* HeroOnMainTableViewModel.swift in Sources */,
 				44B9920D2A24B995005AD635 /* DetailInfoViewController + extension.swift in Sources */,
 				4410AE832A1B841A00B0D16B /* AppDelegate.swift in Sources */,
