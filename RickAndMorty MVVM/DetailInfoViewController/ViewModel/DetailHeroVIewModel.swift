@@ -6,27 +6,33 @@
 //
 
 import Foundation
+import Combine
 
-final class DetailHeroViewModel: DetailHeroViewModelProtocol {
+final class DetailHeroViewModel: ObservableObject {
+    
+    // MARK: - Public properties
+    
+    enum State: Equatable {
+        case loadScreen
+    }
+    
+    enum Event {
+        case onAppear
+    }
     
     var model: DetailHeroModel?
     
-    func configureData(_ controller: DetailInfoViewControllerProtocol) {
-        controller.heroName.text = model?.name
-        controller.heroImage.kf.setImage(with: URL(string: model?.image ?? ""))
-        controller.status.text = model?.status.lowercased()
-        controller.species.text = model?.species.lowercased()
-        controller.gender.text = model?.gender.lowercased()
-        controller.origin.text = model?.origin.name?.lowercased()
-        controller.location.text = model?.location.name?.lowercased()
+    // MARK: - Private properties
+    
+    @Published private(set) var state: State = .loadScreen
+    
+    // MARK: - Public methods
+    
+    func send(event: Event) {
         
-        if model?.type == "" {
-            controller.type.text = "unknown"
-            
-        } else {
-            controller.type.text = model?.type.lowercased()
+        switch event {
+        case .onAppear:
+            self.state = .loadScreen
         }
     }
-    
-
 }

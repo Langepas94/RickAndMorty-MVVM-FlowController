@@ -8,40 +8,45 @@
 import Foundation
 import UIKit
 
-final class FlowController: FlowControllerProtocol {
+final class FlowController: UINavigationController {
+   
+    // MARK: - Private properties
     
-    var navigationController: UINavigationController
-    var viewModel: HeroOnMainTableViewModelProtocol  = HeroOnMainTableViewModel()
-    var detailViewModel: DetailHeroViewModelProtocol = DetailHeroViewModel()
+    private var viewModel = HeroOnMainTableViewModel(service: NetworkServiceImpl())
     
-    func goToMainScreen() {
-        let mainView = MainTableWithHeroesViewController(viewModel: viewModel)
-        viewModel.flowController = self
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.pushViewController(mainView, animated: false)
-    }
+    // MARK: - Public methods
     
-    func goToDetailScreen() {
-        
-        let detailView = DetailInfoViewController(viewModel: detailViewModel)
-        
-        let backButton = UIBarButtonItem(title: self.navigationController.title, style: .plain, target: nil, action: nil)
+    func goToDetailScreen(_ model: DetailHeroViewModel? = nil) {
+        let detailView = DetailInfoViewController()
+        let detailViewModel = DetailHeroViewModel()
+        detailView.viewModel = detailViewModel
+        let backButton = UIBarButtonItem(title: self.title, style: .plain, target: nil, action: nil)
         backButton.tintColor = .black
-        
-        self.navigationController.navigationBar.topItem?.backBarButtonItem = backButton
+        self.navigationBar.topItem?.backBarButtonItem = backButton
         
         viewModel.passData = {  model in
-            self.detailViewModel.model = .init(data: model as! HeroModelOnTable)
-            
-            self.navigationController.pushViewController(detailView, animated: true)
+            detailViewModel.model = .init(data: model)
         }
+        self.pushViewController(detailView, animated: true)
     }
     
-    init(navigationController: UINavigationController) {
-        
-        self.navigationController = navigationController
-        goToMainScreen()
-        
+    // MARK: - Private methods
+    
+    private func goToMainScreen() {
+        let mainView = MainTableWithHeroesViewController()
+        mainView.viewModel  = viewModel
+        viewModel.flowController = self
+        self.navigationBar.prefersLargeTitles = true
+        self.pushViewController(mainView, animated: false)
     }
     
+    // MARK: - Init
+    public init() {
+            super.init(nibName: nil, bundle: nil)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+ 
 }

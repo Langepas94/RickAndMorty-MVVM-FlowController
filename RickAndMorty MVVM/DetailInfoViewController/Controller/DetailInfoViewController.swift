@@ -7,10 +7,13 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class DetailInfoViewController: UIViewController {
     
-    var heroName: UILabel = {
+    // MARK: - UI
+    
+    private lazy var heroName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 28, weight: .bold)
@@ -19,7 +22,7 @@ class DetailInfoViewController: UIViewController {
         return label
     }()
     
-    var status: UILabel = {
+    private lazy var status: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -27,7 +30,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var species: UILabel = {
+    private lazy var species: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -35,7 +38,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var type: UILabel = {
+    private lazy var type: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -43,7 +46,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var gender: UILabel = {
+    private lazy var gender: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -51,7 +54,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var origin: UILabel = {
+    private lazy var origin: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -59,7 +62,7 @@ class DetailInfoViewController: UIViewController {
         label.textAlignment = .right
         return label
     }()
-    var location: UILabel = {
+    private lazy var location: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .medium)
@@ -68,7 +71,7 @@ class DetailInfoViewController: UIViewController {
         return label
     }()
     
-    var heroImage: UIImageView = {
+    private lazy var heroImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 20
@@ -76,7 +79,7 @@ class DetailInfoViewController: UIViewController {
         return imageView
     }()
     
-    var mainStackViewWithIncludedStacks: UIStackView = {
+    private lazy var mainStackViewWithIncludedStacks: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -84,14 +87,14 @@ class DetailInfoViewController: UIViewController {
         return stack
     }()
     
-    var heroDescriptionStackView: UIStackView = {
+    private lazy var heroDescriptionStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .equalCentering
         return stack
     }()
-    var staticStackView: UIStackView = {
+    private lazy var staticStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -99,36 +102,75 @@ class DetailInfoViewController: UIViewController {
         return stack
     }()
     
-    var viewModel: DetailHeroViewModelProtocol
+    private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Public properties
+    
+    var viewModel: DetailHeroViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            bind(viewModel: viewModel)
+        }
+    }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       setupStackView()
+        setupStackView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupUI()
-        title = heroName.text
+    }
+ 
+    // MARK: - Private methods
+    
+    private func bind(viewModel: DetailHeroViewModel) {
+        viewModel.$state.removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                self?.render(state: state)
+            }.store(in: &cancellables)
+        viewModel.send(event: .onAppear)
     }
     
-    init(viewModel: DetailHeroViewModelProtocol) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    private func render(state: DetailHeroViewModel.State) {
+        switch state {
+        case .loadScreen:
+            
+            configure(from: viewModel?.model ?? DetailHeroModel())
+            
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private func configure(from model: DetailHeroModel) {
+
+        self.heroName.text = model.name
+        
+        self.title = model.name
+        
+        self.heroImage.kf.setImage(with: URL(string: model.image))
+        self.status.text = model.status.lowercased()
+        self.species.text = model.species.lowercased()
+        self.gender.text = model.gender.lowercased()
+        self.origin.text = model.origin.name?.lowercased()
+        self.location.text = model.location.name?.lowercased()
+        
     
+        if model.type == "" {
+            self.type.text = "unknown"
+        } else {
+            self.type.text = model.type.lowercased()
+        }
+    }
 }
 
-extension DetailInfoViewController: DetailInfoViewControllerProtocol {}
+// MARK: - Setup UI
 
 extension DetailInfoViewController {
-    // MARK: - Setup UI
+    
     func setupUI() {
         view.backgroundColor = .white
 
@@ -147,9 +189,7 @@ extension DetailInfoViewController {
         mainStackViewWithIncludedStacks.addArrangedSubview(staticStackView)
         mainStackViewWithIncludedStacks.addArrangedSubview(heroDescriptionStackView)
         
-        viewModel.configureData(self)
         NSLayoutConstraint.activate([
-            
             heroImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             heroImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             heroImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -158,9 +198,7 @@ extension DetailInfoViewController {
             mainStackViewWithIncludedStacks.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
             mainStackViewWithIncludedStacks.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             mainStackViewWithIncludedStacks.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
-            
         ])
-        
     }
     
     func setupStackView() {

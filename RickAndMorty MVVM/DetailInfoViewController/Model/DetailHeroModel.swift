@@ -7,25 +7,22 @@
 
 import Foundation
 
-struct DetailHeroModel: DetailHeroModelProtocol {
+struct DetailHeroModel {
+    
+    // MARK: - Public properties
     
     var name: String
-    
     var image: String
-    
     var status: String
-    
     var species: String
-    
-    var type: String 
-    
+    var type: String
     var gender: String
-    
     var origin: Location
-    
     var location: Location
     
-    internal init(name: String, image: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location) {
+    // MARK: - Init's
+    
+    init(name: String, image: String, status: String, species: String, type: String, gender: String, origin: Location, location: Location) {
         self.name = name
         self.image = image
         self.status = status
@@ -45,6 +42,17 @@ struct DetailHeroModel: DetailHeroModelProtocol {
         self.gender = data.gender
         self.origin = data.origin
         self.location = data.location
+    }
+    
+    init() {
+        self.name = "Unknown"
+        self.image = "Unknown"
+        self.status = "Unknown"
+        self.species = "Unknown"
+        self.type = "Unknown"
+        self.gender = "Unknown"
+        self.origin = Location(name: "", url: "")
+        self.location = Location(name: "", url: "")
     }
     
 }

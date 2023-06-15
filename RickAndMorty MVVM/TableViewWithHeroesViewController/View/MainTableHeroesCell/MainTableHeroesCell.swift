@@ -10,7 +10,9 @@ import Kingfisher
 
 final class MainTableHeroesCell: UITableViewCell {
     
-    var name: UILabel = {
+    // MARK: - Private properties
+    
+    private lazy var name: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
@@ -18,14 +20,14 @@ final class MainTableHeroesCell: UITableViewCell {
         return label
     }()
     
-    var image: UIImageView = {
+    private lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
         return image
     }()
     
-    var smallDescription: UILabel = {
+    private lazy var smallDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16, weight: .light)
@@ -39,16 +41,18 @@ final class MainTableHeroesCell: UITableViewCell {
     }
 }
 
-extension MainTableHeroesCell: MainTableHeroesCellProtocol {
+extension MainTableHeroesCell {
     
     static var id: String  = "WeatherCellId"
     
-    func configureCell(with data: HeroModelOnTableProtocol?) {
+    func configureCell(with data: HeroModelOnTable?) {
         setupUI()
         name.text = data?.name
         image.kf.setImage(with: URL(string: data?.image ?? ""))
         smallDescription.text = data?.description
     }
+    
+    // MARK: - Setup Cell
     
     func setupUI() {
         

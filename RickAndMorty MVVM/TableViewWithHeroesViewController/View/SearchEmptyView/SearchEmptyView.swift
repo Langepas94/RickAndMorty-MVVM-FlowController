@@ -10,7 +10,9 @@ import UIKit
 
 final class SearchEmptyView: UIView {
     
-   private var titleError: UILabel = {
+   // MARK: - Private properties
+    
+   private lazy var titleError: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -18,7 +20,7 @@ final class SearchEmptyView: UIView {
         label.textColor = .black
         return label
     }()
-    private var subTitleError: UILabel = {
+    private lazy var subTitleError: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -27,12 +29,14 @@ final class SearchEmptyView: UIView {
         return label
     }()
     
-    private var image: UIImageView = {
+    private lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "loupe")
         return image
     }()
+    
+    // MARK: - Configure UI
     
    private func configureUI() {
         addSubview(image)
@@ -54,6 +58,8 @@ final class SearchEmptyView: UIView {
         ])
     }
 
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()

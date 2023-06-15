@@ -6,81 +6,156 @@
 //
 
 import Foundation
+import Combine
 
-final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
+final class HeroOnMainTableViewModel: ObservableObject {
     
-    var bindClosureFiltered: ((Bool) -> Void)?
+    // MARK: - Public properties
     
-    var maximumPage: Int?
+    enum State: Equatable {
+        case idle
+        case loading
+        case loaded
+        case error
+        case isFiltered([HeroModelOnTable])
+    }
     
-    var pagesIsCancel: Bool = false
+    enum Event {
+        case onAppear
+        case onFiltered(String?)
+        case onPageScroll
+        case onDefaultState
+        case onDetailScreen(Int)
+    }
     
-    var currentPage: Int = 1
-    var filterCurrentPage: Int = 1
-    
-    let network = NetworkManager()
-    
-    var model: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
-    
-    var filteredModel: [HeroModelOnTableProtocol]? = [HeroModelOnTableProtocol]()
-    
-    var bindClosure: ((Bool) -> Void)?
-     
-    var passData: ((HeroModelOnTableProtocol) -> Void)?
-    
+    var passData: ((HeroModelOnTable) -> Void)?
     weak var flowController: FlowController?
     
-    var isFiltered: Bool = false
+    // MARK: - Private properties
     
-    // MARK: - Fetch data
+    private var maximumPage: Int?
+    private var pagesIsCancel: Bool = false
+    private var currentPage: Int = 1
+    private var filterCurrentPage: Int = 1
+    private var model: [HeroModelOnTable]? = [HeroModelOnTable]()
+    private var filteredModel: [HeroModelOnTable]? = [HeroModelOnTable]()
+    private var bindClosure: ((Bool) -> Void)?
+    private var isFiltered: Bool = false
+    private let service: HeroNetworkService
+    private var bindClosureFiltered: ((Bool) -> Void)?
+    private var searchText = ""
+    
+    @Published private(set) var state: State = .idle
+    
+    // MARK: - Init
+    
+    init(service: HeroNetworkService) {
+        self.service = service
+    }
+    
+    // MARK: - Public methods
+    
+    func send(event: Event) {
+        switch event {
+        case .onAppear:
+            fetchData()
+        case .onFiltered(let text):
+            zeroFiltered()
+            guard let text = text else { return }
+            self.searchText = text
+            filterCurrentPage = 1
+            if text.count >= 1 {
+                getFiltered(phrase: text)
+                isFiltered = true
+            } else {
+                isFiltered = false
+                self.state = .loaded
+            }
+        case .onPageScroll:
+            nextPage()
+        case .onDefaultState:
+            filterCurrentPage = 1
+            currentPage = 1
+            fetchData()
+            isFiltered = false
+            self.state = .loaded
+            
+        case .onDetailScreen(let index):
+            goToDetailScreen(index: index)
+        }
+    }
+    
+    // MARK: - Private methods
+    
     private func fetchData() {
-        
-        self.network.getAllCharacters(page: currentPage) { [weak self] result in
+        self.service.getAllCharacters(page: currentPage) { [weak self] result in
             guard let self = self else { return }
             switch result {
-                
             case .success(let data):
-                DispatchQueue.main.async {
+                
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
                     self.maximumPage = data?.info?.pages
-                   
                     self.model?.append(contentsOf: heroModels ?? [])
-                    
+                    self.state = .loaded
                     self.handleResponse(success: true)
-                }
-              
-            case .failure(let error):
+                
+            case .failure(_):
                 self.handleResponse(success: false)
-                print(error)
+                self.state = .error
             }
         }
     }
     
-    func nextPage() {
+    // MARK: - Fetch Filtered Data
+    
+    private func getFiltered(phrase: String) {
+        self.service.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
+            result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                
+                    let charData = data?.results
+                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
+                    self.maximumPage = data?.info?.pages
+                    self.filteredModel?.append(contentsOf: heroModels ?? [])
+                    if self.filteredModel != [] {
+                        self.state = .isFiltered(heroModels ?? [])
+                    } else {
+                        self.state = .error
+                    }
+                    self.handleResponse(success: true)
+                
+            case .failure(_): break
+            }
+        }
+    }
+    
+    // MARK: - Pagination settings
+    
+    private func nextPage() {
         if isFiltered == false {
             if currentPage < maximumPage ?? 0 {
                 currentPage += 1
-                
-                    fetchData()
+                fetchData()
+                self.state = .loading
                 
             } else if currentPage == maximumPage {
                 pagesIsCancel = true
             }
+            
         } else {
             if filterCurrentPage < maximumPage ?? 0 {
                 filterCurrentPage += 1
-                
-                    fetchData()
-                
+                getFiltered(phrase: searchText)
             } else if filterCurrentPage == maximumPage {
                 pagesIsCancel = true
             }
         }
-       
     }
     
-    func handleResponse(success: Bool ) {
+    private func handleResponse(success: Bool ) {
         if let bindClosure = self.bindClosure {
             bindClosure(success)
         }
@@ -89,8 +164,9 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
         }
     }
     
-    func goToDetailScreen(index: Int) {
-
+    // MARK: - on Detail screen
+    
+    private func goToDetailScreen(index: Int) {
         flowController?.goToDetailScreen()
         if isFiltered {
             guard let returnedModel = filteredModel?[index] else { return }
@@ -100,36 +176,16 @@ final class HeroOnMainTableViewModel: HeroOnMainTableViewModelProtocol {
             passData?(returnedModel)
         }
     }
-    // MARK: - Fetch Filtered Data
-    func getFiltered(phrase: String) {
-        self.network.getFilteredCharacters(page: filterCurrentPage, phrase: phrase) { [weak self]
-            result in
-            guard let self = self else { return }
-            switch result {
-                
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let charData = data?.results
-                    let heroModels = charData?.map{HeroModelOnTable(data: $0)}
-                    self.maximumPage = data?.info?.pages
-                    
-                    self.filteredModel?.append(contentsOf: heroModels ?? [])
-
-                    self.handleResponse(success: true)
-                }
-            case .failure(let error): break
-            }
-        }
-    }
     
-    func zeroFiltered() {
+    private func zeroFiltered() {
         self.filteredModel?.removeAll()
     }
     
-    init () {
-        
-        fetchData()
-        
+    func getModel() -> [HeroModelOnTable] {
+        if isFiltered == false {
+            return self.model ?? [HeroModelOnTable]()
+        } else {
+            return self.filteredModel ?? [HeroModelOnTable]()
+        }
     }
-    
 }
