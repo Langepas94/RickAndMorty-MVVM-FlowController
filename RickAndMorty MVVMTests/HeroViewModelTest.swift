@@ -28,7 +28,7 @@ final class HeroViewModelTest: XCTestCase {
     func testFetchDataLoaded() {
         sut.send(event: .onAppear)
         mockApiService.successLoadAllCharacters()
-        XCTAssertEqual(sut.state, .loaded)
+        XCTAssertEqual(self.sut.state, .loaded)
     }
     
     func testFetchDataFailed() {
@@ -51,5 +51,10 @@ final class HeroViewModelTest: XCTestCase {
         let heroModels = model?.map{HeroModelOnTable(data: $0)}
         XCTAssertEqual(sut.state, .isFiltered(heroModels ?? []))
     }
-
+    
+    func testDefaultState() {
+        sut.send(event: .onDefaultState)
+        mockApiService.successLoadAllCharacters()
+        XCTAssertEqual(sut.state, .loaded)
+    }
 }

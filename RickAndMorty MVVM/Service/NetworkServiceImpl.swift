@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class NetworkServiceImpl: HeroNetworkService {
     static func baseURL() -> String {
@@ -15,48 +16,69 @@ class NetworkServiceImpl: HeroNetworkService {
     // MARK: - Get all characters
     
     func getAllCharacters(page: Int, completion: @escaping(Result<NetworkHeroesDataModel?, NetworkErrors>) -> Void) {
-        var urlComonents = URLComponents(string: NetworkServiceImpl.baseURL() + FetchedData.allCharacters.rawValue)
-        let queryItems = [URLQueryItem(name: "page", value: "\(page)")]
-        urlComonents?.queryItems = queryItems
-        let completedURL = urlComonents?.url
-        guard let url = completedURL else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                completion(.failure(error?.localizedDescription as! NetworkErrors))
-                return
-            }
-            do {
-                let jsonData = try JSONDecoder().decode(NetworkHeroesDataModel.self, from: data)
-                completion(.success(jsonData))
-            } catch {
-                completion(.failure(error.localizedDescription as! NetworkErrors))
+        let mainURL = NetworkServiceImpl.baseURL() + FetchedData.allCharacters.rawValue
+        let parameters: [String : String] = [
+            "page" : "\(page)"
+        ]
+        
+        AF.request(mainURL, parameters: parameters) { request in
+            request.timeoutInterval = 10
+        }
+        .validate()
+        .responseDecodable(of: NetworkHeroesDataModel.self) { response in
+            if let error = response.error {
+                if error.responseCode == 404 {
+                    print("incorrect URl")
+                    completion(.failure(.incorrectURL))
+                } else {
+                    print("No network")
+                    completion(.failure(.notNetworkAvailable))
+                }
+            } else {
+                switch response.result {
+                case .success(let success):
+                    completion(.success(success))
+                case .failure(let failure):
+                    print("fuf")
+                    completion(.failure(.notNetworkAvailable))
+                }
             }
         }
-        task.resume()
     }
     
     // MARK: - Get filtered characters
     
     func getFilteredCharacters(page: Int, phrase: String, completion: @escaping(Result<NetworkHeroesDataModel?, NetworkErrors>) -> Void) {
-        var urlComonents = URLComponents(string: NetworkServiceImpl.baseURL() + FetchedData.allCharacters.rawValue)
-        let queryItems = [URLQueryItem(name: "page", value: "\(page)"), URLQueryItem(name: "name", value: "\(phrase)")]
-        urlComonents?.queryItems = queryItems
-        let completedURL = urlComonents?.url
-        guard let url = completedURL else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(error?.localizedDescription as! NetworkErrors))
-                return
-            }
-            do {
-                let jsonData = try JSONDecoder().decode(NetworkHeroesDataModel.self, from: data)
-                completion(.success(jsonData))
-            } catch {
-                completion(.failure(error.localizedDescription as! NetworkErrors))
+        
+        let mainURL = NetworkServiceImpl.baseURL() + FetchedData.allCharacters.rawValue
+        let parameters: [String : String] = [
+            "page" : "\(page)",
+            "name" : "\(phrase)"
+        ]
+        AF.request(mainURL, parameters: parameters) { request in
+            request.timeoutInterval = 10
+        }
+        .validate()
+        .responseDecodable(of: NetworkHeroesDataModel.self) { response in
+            if let error = response.error {
+                if error.responseCode == 404 {
+                    print("incorrect URl")
+                    completion(.failure(.incorrectURL))
+                } else {
+                    print("No network")
+                    completion(.failure(.notNetworkAvailable))
+                }
+            } else {
+                switch response.result {
+                case .success(let success):
+                    completion(.success(success))
+                case .failure(let failure):
+                    print("fuf")
+                    completion(.failure(.notNetworkAvailable))
+                }
             }
         }
-        task.resume()
     }
 }
 

@@ -29,6 +29,7 @@
 		44B992012A248BD9005AD635 /* DetailHeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992002A248BD9005AD635 /* DetailHeroModel.swift */; };
 		44B992052A248F4F005AD635 /* DetailHeroVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B992042A248F4F005AD635 /* DetailHeroVIewModel.swift */; };
 		44B9920D2A24B995005AD635 /* DetailInfoViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B9920C2A24B995005AD635 /* DetailInfoViewController + extension.swift */; };
+		44C4F4CC2A49A93C007584C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 44C4F4CB2A49A93C007584C5 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4410AECC2A1BEB2300B0D16B /* Kingfisher in Frameworks */,
+				44C4F4CC2A49A93C007584C5 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +321,7 @@
 			name = "RickAndMorty MVVM";
 			packageProductDependencies = (
 				4410AECB2A1BEB2300B0D16B /* Kingfisher */,
+				44C4F4CB2A49A93C007584C5 /* Alamofire */,
 			);
 			productName = "RickAndMorty MVVM";
 			productReference = 4410AE7F2A1B841A00B0D16B /* RickAndMorty MVVM.app */;
@@ -394,6 +397,7 @@
 			mainGroup = 4410AE762A1B841A00B0D16B;
 			packageReferences = (
 				4410AECA2A1BEB2300B0D16B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				44C4F4CA2A49A93C007584C5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4410AE802A1B841A00B0D16B /* Products */;
 			projectDirPath = "";
@@ -785,6 +789,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		44C4F4CA2A49A93C007584C5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -792,6 +804,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4410AECA2A1BEB2300B0D16B /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		44C4F4CB2A49A93C007584C5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44C4F4CA2A49A93C007584C5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

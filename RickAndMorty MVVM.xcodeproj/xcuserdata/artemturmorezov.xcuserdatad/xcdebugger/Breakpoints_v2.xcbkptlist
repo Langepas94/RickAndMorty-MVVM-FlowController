@@ -78,10 +78,169 @@
             filePath = "RickAndMorty MVVM/TableViewWithHeroesViewController/ViewModel/HeroOnMainTableViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "fetchData()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6AB5BCD4-68C7-4100-8BBB-ADA83D9F26EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty MVVMTests/HeroViewModelTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "testFetchDataLoaded()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6AB5BCD4-68C7-4100-8BBB-ADA83D9F26EB - c4951eedfd86d493"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVMTests.HeroViewModelTest.testFetchDataLoaded() -&gt; ()"
+                  moduleName = "RickAndMorty MVVMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVMTests/HeroViewModelTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "6AB5BCD4-68C7-4100-8BBB-ADA83D9F26EB - c4951eedfd86d493"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVMTests.HeroViewModelTest.testFetchDataLoaded() -&gt; ()"
+                  moduleName = "RickAndMorty MVVMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVMTests/HeroViewModelTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "038BC4C2-6742-49F2-89F1-22966E44AB15"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty MVVMTests/HeroViewModelTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "testFetchDataLoaded()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "038BC4C2-6742-49F2-89F1-22966E44AB15 - c4951eedfd86d472"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVMTests.HeroViewModelTest.testFetchDataLoaded() -&gt; ()"
+                  moduleName = "RickAndMorty MVVMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVMTests/HeroViewModelTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "038BC4C2-6742-49F2-89F1-22966E44AB15 - a8bb8495cf22dad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in RickAndMorty_MVVMTests.HeroViewModelTest.testFetchDataLoaded() -&gt; ()"
+                  moduleName = "RickAndMorty MVVMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVMTests/HeroViewModelTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "038BC4C2-6742-49F2-89F1-22966E44AB15 - c4951eedfd86d472"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVMTests.HeroViewModelTest.testFetchDataLoaded() -&gt; ()"
+                  moduleName = "RickAndMorty MVVMTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVMTests/HeroViewModelTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "320">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73A926AB-8747-4D47-B9F9-DC9BC5DACBB7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty MVVM/Service/NetworkServiceImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getAllCharacters(page:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "73A926AB-8747-4D47-B9F9-DC9BC5DACBB7 - 59ccb7ca4ece5d94"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RickAndMorty_MVVM.NetworkServiceImpl.getAllCharacters(page: Swift.Int, completion: (Swift.Result&lt;Swift.Optional&lt;RickAndMorty_MVVM.NetworkHeroesDataModel&gt;, RickAndMorty_MVVM.NetworkErrors&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RickAndMorty MVVM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVM/Service/NetworkServiceImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "592">
+               </Location>
+               <Location
+                  uuid = "73A926AB-8747-4D47-B9F9-DC9BC5DACBB7 - 1fe33324105d9a98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout Foundation.URLRequest) -&gt; () in RickAndMorty_MVVM.NetworkServiceImpl.getAllCharacters(page: Swift.Int, completion: (Swift.Result&lt;Swift.Optional&lt;RickAndMorty_MVVM.NetworkHeroesDataModel&gt;, RickAndMorty_MVVM.NetworkErrors&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "RickAndMorty MVVM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/swift/RickAndMorty%20MVVM/RickAndMorty%20MVVM/Service/NetworkServiceImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

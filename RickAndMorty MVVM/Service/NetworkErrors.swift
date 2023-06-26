@@ -9,5 +9,6 @@ import Foundation
 
 enum NetworkErrors: Error {
     case notNetworkAvailable
+    case incorrectURL
     case unknownError
 }

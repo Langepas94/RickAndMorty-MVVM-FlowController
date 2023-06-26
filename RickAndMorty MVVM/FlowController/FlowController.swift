@@ -43,6 +43,7 @@ final class FlowController: UINavigationController {
     // MARK: - Init
     public init() {
             super.init(nibName: nil, bundle: nil)
+        goToMainScreen()
         }
         
         required init?(coder aDecoder: NSCoder) {
