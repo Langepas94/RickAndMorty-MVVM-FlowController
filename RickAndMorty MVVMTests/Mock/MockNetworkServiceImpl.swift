@@ -29,7 +29,9 @@ class MockNetworkServiceImpl: HeroNetworkService {
     }
     
     func successLoadAllCharacters() {
-        self.getAllCharactersMock(Result.success(self.model))
+        
+    getAllCharactersMock(Result.success(self.model))
+        
     }
     
     func failLoadAllCharacters(error: NetworkErrors) {

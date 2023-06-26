@@ -66,6 +66,7 @@ class MainTableWithHeroesViewController: UIViewController  {
         case .loading:
             self.table.reloadData()
         case .loaded:
+            errorView.isHidden = true
             self.table.reloadData()
         case .error:
             errorView.isHidden = false

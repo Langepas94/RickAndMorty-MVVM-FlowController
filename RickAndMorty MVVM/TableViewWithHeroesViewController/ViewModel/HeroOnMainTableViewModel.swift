@@ -92,14 +92,12 @@ final class HeroOnMainTableViewModel: ObservableObject {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                
                     let charData = data?.results
                     let heroModels = charData?.map{HeroModelOnTable(data: $0)}
                     self.maximumPage = data?.info?.pages
                     self.model?.append(contentsOf: heroModels ?? [])
                     self.state = .loaded
                     self.handleResponse(success: true)
-                
             case .failure(_):
                 self.handleResponse(success: false)
                 self.state = .error
@@ -175,6 +173,7 @@ final class HeroOnMainTableViewModel: ObservableObject {
             guard let returnedModel = model?[index] else { return }
             passData?(returnedModel)
         }
+        
     }
     
     private func zeroFiltered() {
