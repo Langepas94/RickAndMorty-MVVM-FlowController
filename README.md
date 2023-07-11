@@ -1,7 +1,6 @@
 # RickAndMorty-MVVM-FlowController
 
-FlowController + MVVM 
-Использовался Combine (state, event)
+FlowController + MVVM + FlowController + Combine
 Unit тесты
 
 <p align="center">
