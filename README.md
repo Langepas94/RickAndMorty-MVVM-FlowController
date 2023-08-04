@@ -1,6 +1,6 @@
 # RickAndMorty-MVVM-FlowController
 
-FlowController + MVVM + FlowController + Combine
+MVVM + FlowController + Combine
 Unit тесты
 
 <p align="center">
